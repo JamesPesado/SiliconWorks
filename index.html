@@ -39,9 +39,10 @@ body {
 ::-webkit-scrollbar-track { background:var(--sw-bg2); }
 ::-webkit-scrollbar-thumb { background:var(--sw-purple-light); border-radius:99px; }
 
+/* ═══════════════════════ NAV ═══════════════════════ */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:1000;
-  background:rgba(236,234,246,0.88);
+  background:rgba(236,234,246,0.92);
   backdrop-filter:blur(16px) saturate(180%);
   border-bottom:1px solid rgba(108,63,232,0.10);
   display:flex; align-items:center; justify-content:space-between;
@@ -49,7 +50,7 @@ nav {
   transition:box-shadow var(--transition);
 }
 nav.scrolled { box-shadow:0 4px 24px rgba(26,16,64,0.08); }
-.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
 .nav-logo-box {
   width:36px; height:36px;
   background:linear-gradient(135deg,var(--sw-purple),var(--sw-accent));
@@ -59,6 +60,20 @@ nav.scrolled { box-shadow:0 4px 24px rgba(26,16,64,0.08); }
 .nav-logo-box span { font-family:'Syne',sans-serif; font-weight:800; color:#fff; font-size:13px; letter-spacing:-0.5px; }
 .nav-brand { font-family:'Syne',sans-serif; font-weight:700; font-size:12px; color:var(--sw-purple); line-height:1.2; }
 .nav-brand small { display:block; font-size:9px; font-weight:400; letter-spacing:1.5px; color:var(--sw-muted); text-transform:uppercase; }
+
+/* Hamburger */
+.nav-hamburger {
+  display:none; flex-direction:column; gap:5px; cursor:pointer;
+  background:none; border:none; padding:4px; z-index:1001;
+}
+.nav-hamburger span {
+  width:24px; height:2px; background:var(--sw-purple);
+  border-radius:2px; transition:all 0.3s ease; display:block;
+}
+.nav-hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
 .nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
 .nav-links a {
   font-size:13px; font-weight:500; text-decoration:none; color:var(--sw-text);
@@ -70,7 +85,7 @@ nav.scrolled { box-shadow:0 4px 24px rgba(26,16,64,0.08); }
 section { display:none; }
 section.active { display:block; }
 
-/* HERO */
+/* ═══════════════════════ HERO ═══════════════════════ */
 #home { min-height:100vh; padding-top:68px; position:relative; overflow:hidden; }
 
 .hero-grid-bg {
@@ -105,11 +120,11 @@ section.active { display:block; }
   text-transform:uppercase; padding:5px 14px; border-radius:99px;
   margin-bottom:20px;
 }
-.hero-eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--sw-green); box-shadow:0 0 6px var(--sw-green); }
+.hero-eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--sw-green); box-shadow:0 0 6px var(--sw-green); flex-shrink:0; }
 
 .hero-title {
   font-family:'Syne',sans-serif; font-weight:800;
-  font-size:clamp(52px,7.5vw,88px);
+  font-size:clamp(42px,7.5vw,88px);
   line-height:0.93; letter-spacing:-2.5px;
   color:var(--sw-dark); margin-bottom:22px;
 }
@@ -119,7 +134,7 @@ section.active { display:block; }
 
 .hero-stats {
   display:flex; gap:32px; margin-top:40px; padding-top:32px;
-  border-top:1px solid rgba(108,63,232,0.12);
+  border-top:1px solid rgba(108,63,232,0.12); flex-wrap:wrap;
 }
 .hero-stat-val {
   font-family:'Syne',sans-serif; font-weight:800; font-size:28px; color:var(--sw-purple);
@@ -195,7 +210,7 @@ section.active { display:block; }
 @keyframes rgb-move { from{background-position:0%} to{background-position:300%} }
 .pc-glow-inner { position:absolute; inset:0; background:radial-gradient(circle at 50% 40%, rgba(192,111,255,0.12) 0%, transparent 60%); }
 
-/* BUILDS SECTION */
+/* ═══════════════════════ BUILDS ═══════════════════════ */
 .builds-gradient {
   background:linear-gradient(180deg,var(--sw-bg) 0%,#cec8f0 60%,#b6aee8 100%);
   padding:80px 48px;
@@ -245,8 +260,6 @@ section.active { display:block; }
 .mini-fan-center { position:absolute; inset:11px; border-radius:50%; background:#0c0620; }
 .build-price { font-family:'Syne',sans-serif; font-weight:800; font-size:28px; color:#fff; z-index:1; }
 .build-label { font-size:12px; color:rgba(255,255,255,0.55); z-index:1; margin-bottom:10px; }
-
-/* ── BUILD CARD BUTTONS ── */
 .build-btns { display:flex; flex-direction:column; gap:8px; width:100%; z-index:1; margin-top:12px; }
 .build-btn {
   background:rgba(255,255,255,0.10); color:#fff;
@@ -264,7 +277,7 @@ section.active { display:block; }
 }
 .build-order-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(108,63,232,0.45); }
 
-/* PACKAGES */
+/* ═══════════════════════ PACKAGES ═══════════════════════ */
 #packages-section { padding:80px 48px; background:var(--sw-bg); scroll-margin-top:80px; }
 .package-card {
   background:var(--sw-white); border-radius:20px; padding:30px;
@@ -298,7 +311,7 @@ section.active { display:block; }
   background:var(--sw-bg2); border-radius:7px; font-size:11px; font-weight:600;
   color:var(--sw-text); border:1px solid var(--sw-card);
 }
-.dot { width:7px; height:7px; border-radius:50%; display:inline-block; }
+.dot { width:7px; height:7px; border-radius:50%; display:inline-block; flex-shrink:0; }
 .pay-badge .dot.gcash { background:#1B72BE; }
 .pay-badge .dot.maya  { background:#00A94F; }
 .pay-badge .dot.bank  { background:#E87722; }
@@ -313,17 +326,15 @@ section.active { display:block; }
 }
 .order-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(108,63,232,0.36); }
 .package-actions { display:flex; flex-direction:column; gap:10px; min-width:130px; }
-
 .pkg-section-heading {
   font-family:'Syne',sans-serif; font-weight:800;
   font-size:clamp(28px,4vw,44px); color:var(--sw-dark);
   margin-bottom:28px; scroll-margin-top:90px;
 }
 
-/* COMPONENTS */
+/* ═══════════════════════ COMPONENTS ═══════════════════════ */
 #components { background:var(--sw-bg); }
 .comp-header { padding:40px 48px 0; }
-
 .comp-tab-bar {
   position:sticky; top:68px; z-index:200;
   background:rgba(236,234,246,0.95);
@@ -361,8 +372,8 @@ section.active { display:block; }
   border-radius:50%; font-size:10px; font-weight:700;
   display:flex; align-items:center; justify-content:center;
   border:2px solid var(--sw-bg);
+  transition:transform 0.2s ease;
 }
-
 .comp-category-block { padding:32px 48px; }
 .comp-category-block + .comp-category-block { border-top:1px solid rgba(108,63,232,0.08); }
 .comp-section-title {
@@ -373,13 +384,11 @@ section.active { display:block; }
   content:''; flex:1; height:1px;
   background:linear-gradient(90deg,rgba(108,63,232,0.25),transparent);
 }
-
 .products-grid {
   display:grid;
   grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
   gap:16px;
 }
-
 .product-card {
   background:var(--sw-white); border-radius:var(--radius-card);
   border:1px solid var(--sw-card); overflow:hidden;
@@ -387,7 +396,6 @@ section.active { display:block; }
   display:flex; flex-direction:column;
 }
 .product-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(108,63,232,0.12); }
-
 .product-img-box {
   background:linear-gradient(135deg,#eeebfa,#ddd8f6);
   height:150px; display:flex; align-items:center; justify-content:center;
@@ -399,7 +407,6 @@ section.active { display:block; }
   transition:transform var(--transition);
 }
 .product-card:hover .product-img-box img { transform:scale(1.06); }
-
 .brand-chip {
   position:absolute; top:8px; left:8px;
   font-size:9px; font-weight:700; padding:2px 8px;
@@ -408,7 +415,6 @@ section.active { display:block; }
 .brand-amd   { background:#ED1C24; color:#fff; }
 .brand-intel { background:#0071C5; color:#fff; }
 .brand-nvidia{ background:#76B900; color:#fff; }
-
 .product-info { padding:12px; flex:1; display:flex; flex-direction:column; }
 .product-name { font-size:12px; font-weight:700; color:var(--sw-text); margin-bottom:4px; line-height:1.4; }
 .product-spec { font-size:10px; color:var(--sw-muted); line-height:1.5; margin-bottom:8px; flex:1; }
@@ -429,7 +435,7 @@ section.active { display:block; }
 }
 .buy-now-btn:hover { transform:translateY(-1px); }
 
-/* CONTACT */
+/* ═══════════════════════ CONTACT ═══════════════════════ */
 #contact { background:var(--sw-bg); padding-top:68px; }
 .contact-inner { max-width:680px; margin:0 auto; padding:60px 48px 80px; }
 .contact-form {
@@ -456,7 +462,7 @@ section.active { display:block; }
 }
 .submit-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(108,63,232,0.36); }
 
-/* ABOUT */
+/* ═══════════════════════ ABOUT ═══════════════════════ */
 #about { background:var(--sw-bg); padding-top:68px; }
 .about-inner { max-width:880px; margin:0 auto; padding:60px 48px 80px; }
 .about-intro { font-size:15px; color:var(--sw-text); line-height:1.85; margin-bottom:44px; }
@@ -492,49 +498,26 @@ section.active { display:block; }
   position:relative; overflow:hidden;
 }
 .about-banner::after {
-  content:'';
-  position:absolute; right:-40px; top:-40px;
+  content:''; position:absolute; right:-40px; top:-40px;
   width:200px; height:200px; border-radius:50%;
   background:rgba(255,255,255,0.04);
 }
 
-/* ═══════════════════════════════════════
-   PAYMENT MODAL — FIXED & FULLY WORKING
-   ═══════════════════════════════════════ */
+/* ═══════════════════════ MODAL ═══════════════════════ */
 .modal-overlay {
-  position:fixed;
-  inset:0;
-  background:rgba(16,8,40,0.75);
-  z-index:99999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  backdrop-filter:blur(6px);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.25s ease;
+  position:fixed; inset:0; background:rgba(16,8,40,0.75); z-index:99999;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:opacity 0.25s ease;
 }
-.modal-overlay.open {
-  opacity:1;
-  pointer-events:all;
-}
+.modal-overlay.open { opacity:1; pointer-events:all; }
 .modal-box {
-  background:#fff;
-  border-radius:22px;
-  padding:34px;
-  width:100%;
-  max-width:520px;
-  max-height:88vh;
-  overflow-y:auto;
-  position:relative;
+  background:#fff; border-radius:22px; padding:34px; width:100%; max-width:520px;
+  max-height:88vh; overflow-y:auto; position:relative;
   box-shadow:0 32px 80px rgba(16,8,40,0.35);
   transform:scale(0.94) translateY(12px);
   transition:transform 0.25s cubic-bezier(.4,0,.2,1);
 }
-.modal-overlay.open .modal-box {
-  transform:scale(1) translateY(0);
-}
+.modal-overlay.open .modal-box { transform:scale(1) translateY(0); }
 .modal-close {
   position:absolute; top:14px; right:14px;
   background:var(--sw-bg2); border:none; width:32px; height:32px;
@@ -544,17 +527,14 @@ section.active { display:block; }
 .modal-close:hover { background:var(--sw-card); color:var(--sw-dark); }
 .modal-title { font-family:'Syne',sans-serif; font-weight:800; font-size:20px; color:var(--sw-dark); margin-bottom:4px; }
 .modal-sub { font-size:13px; color:var(--sw-muted); margin-bottom:22px; }
-
-/* Price summary bar inside modal */
 .modal-price-bar {
   background:linear-gradient(135deg,rgba(108,63,232,0.08),rgba(192,111,255,0.08));
-  border:1px solid rgba(108,63,232,0.18);
-  border-radius:12px; padding:12px 16px; margin-bottom:20px;
+  border:1px solid rgba(108,63,232,0.18); border-radius:12px;
+  padding:12px 16px; margin-bottom:20px;
   display:flex; align-items:center; justify-content:space-between;
 }
 .modal-price-label { font-size:12px; color:var(--sw-muted); font-weight:500; }
 .modal-price-val { font-family:'Syne',sans-serif; font-weight:800; font-size:22px; color:var(--sw-purple); }
-
 .payment-tabs { display:flex; gap:7px; margin-bottom:22px; flex-wrap:wrap; }
 .pay-tab {
   padding:7px 14px; border-radius:7px; border:1px solid var(--sw-card);
@@ -564,7 +544,6 @@ section.active { display:block; }
 }
 .pay-tab.active { background:var(--sw-purple); color:#fff; border-color:var(--sw-purple); }
 .pay-tab:hover:not(.active) { border-color:var(--sw-purple-light); color:var(--sw-purple); }
-
 .pay-form { display:none; }
 .pay-form.active { display:block; }
 .pay-form .form-group { margin-bottom:12px; }
@@ -585,11 +564,10 @@ section.active { display:block; }
 .confirm-btn {
   width:100%;
   background:linear-gradient(135deg,var(--sw-purple),var(--sw-accent));
-  color:#fff; border:none; padding:13px;
-  border-radius:12px; font-family:'Syne',sans-serif;
-  font-weight:700; font-size:14px; cursor:pointer; margin-top:8px;
-  box-shadow:0 6px 18px rgba(108,63,232,0.28);
-  transition:all var(--transition);
+  color:#fff; border:none; padding:13px; border-radius:12px;
+  font-family:'Syne',sans-serif; font-weight:700; font-size:14px;
+  cursor:pointer; margin-top:8px;
+  box-shadow:0 6px 18px rgba(108,63,232,0.28); transition:all var(--transition);
 }
 .confirm-btn:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(108,63,232,0.38); }
 .bank-row { display:flex; gap:8px; margin-bottom:14px; }
@@ -605,19 +583,18 @@ section.active { display:block; }
 .cod-warn { background:#FEF3C7; border-radius:8px; padding:11px; margin-bottom:12px; border:1px solid #FCD34D; }
 .cod-warn p { font-size:12px; color:#92400E; line-height:1.6; }
 
-/* Success toast */
+/* Toast */
 .toast {
   position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(80px);
-  background:linear-gradient(135deg,#1a0f38,#2d1a5a);
-  color:#fff; padding:14px 28px; border-radius:50px;
-  font-family:'Syne',sans-serif; font-weight:700; font-size:14px;
-  box-shadow:0 8px 32px rgba(26,16,64,0.30);
+  background:linear-gradient(135deg,#1a0f38,#2d1a5a); color:#fff;
+  padding:14px 28px; border-radius:50px; font-family:'Syne',sans-serif;
+  font-weight:700; font-size:14px; box-shadow:0 8px 32px rgba(26,16,64,0.30);
   z-index:999999; transition:transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.35s ease;
-  opacity:0; white-space:nowrap;
+  opacity:0; white-space:nowrap; max-width:calc(100vw - 40px); text-align:center;
 }
 .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
-/* CART SIDEBAR */
+/* Cart Sidebar */
 #cart-sidebar {
   position:fixed; right:-400px; top:0; bottom:0; width:370px;
   background:#fff; z-index:3000;
@@ -646,7 +623,6 @@ section.active { display:block; }
 }
 .cart-clear-btn:hover { border-color:var(--sw-purple-light); color:var(--sw-purple); }
 #cart-overlay { display:none; position:fixed; inset:0; background:rgba(16,8,40,0.25); z-index:2999; }
-
 .cart-item {
   display:flex; gap:10px; align-items:center;
   padding:10px 0; border-bottom:1px solid var(--sw-card);
@@ -677,6 +653,120 @@ footer {
 footer .fw { color:#fff; font-family:'Syne',sans-serif; font-weight:700; font-size:15px; }
 footer a { color:rgba(255,255,255,0.5); text-decoration:none; transition:color var(--transition); }
 footer a:hover { color:#fff; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — TABLET (≤900px)
+   ═══════════════════════════════════════════════════ */
+@media (max-width:900px) {
+  nav { padding:12px 24px; }
+
+  .hero-container {
+    flex-direction:column; padding:32px 24px 48px;
+    text-align:center; min-height:auto; gap:32px;
+    padding-top:20px;
+  }
+  .hero-content { max-width:100%; }
+  .hero-sub { max-width:100%; margin-left:auto; margin-right:auto; }
+  .hero-btns { justify-content:center; }
+  .hero-eyebrow { margin-left:auto; margin-right:auto; }
+  .hero-stats { justify-content:center; gap:24px; }
+  .hero-glow { display:none; }
+  .hero-pc-wrapper { width:100%; max-width:340px; }
+  .hero-pc { height:300px; }
+
+  .builds-gradient { padding:60px 24px; }
+  .builds-grid { grid-template-columns:1fr 1fr; gap:16px; }
+  .build-card:nth-child(2) { grid-column:1 / -1; transform:none; }
+  .build-card:nth-child(2):hover { transform:translateY(-8px); }
+
+  #packages-section { padding:60px 24px; }
+  .package-card { flex-direction:column; gap:20px; }
+  .package-pc { width:100%; height:140px; }
+  .specs-list ul { grid-template-columns:1fr; }
+
+  .about-inner { padding:60px 24px 80px; }
+  .about-cols { grid-template-columns:1fr 1fr; }
+  .contact-details { grid-template-columns:1fr; }
+
+  .contact-inner { padding:60px 24px 80px; }
+  .contact-form { padding:28px 20px; }
+  .form-row { grid-template-columns:1fr; gap:0; }
+
+  .comp-header { padding:40px 24px 0; }
+  .comp-tab-bar { padding:10px 24px; top:60px; }
+  .comp-category-block { padding:24px; }
+
+  footer { padding:24px; flex-direction:column; text-align:center; gap:10px; }
+
+  #cart-sidebar { width:320px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤600px)
+   ═══════════════════════════════════════════════════ */
+@media (max-width:600px) {
+  nav { padding:10px 16px; }
+  .nav-links { display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+    background:rgba(236,234,246,0.98); backdrop-filter:blur(20px);
+    flex-direction:column; justify-content:center; align-items:center;
+    gap:36px; z-index:999; }
+  .nav-links.mobile-open { display:flex; }
+  .nav-links a { font-size:22px; font-weight:700; font-family:'Syne',sans-serif; }
+  .nav-hamburger { display:flex; }
+
+  .hero-container { padding:20px 16px 40px; }
+  .hero-title { letter-spacing:-1.5px; }
+  .hero-btns { flex-direction:column; width:100%; }
+  .btn-primary, .btn-outline { text-align:center; width:100%; }
+  .hero-stats { gap:16px; }
+  .hero-stat-val { font-size:22px; }
+
+  .builds-gradient { padding:48px 16px; }
+  .builds-grid { grid-template-columns:1fr; }
+  .build-card:nth-child(2) { grid-column:auto; }
+
+  #packages-section { padding:48px 16px; }
+  .package-card { padding:20px 16px; }
+  .package-price { font-size:26px; }
+
+  .comp-header { padding:32px 16px 0; }
+  .comp-tab-bar { padding:8px 16px; }
+  .comp-nav-inner { padding:6px 8px; gap:4px; }
+  .comp-tab { padding:5px 10px; font-size:11px; }
+  .comp-category-block { padding:20px 16px; }
+  .products-grid { grid-template-columns:1fr 1fr; gap:10px; }
+  .product-img-box { height:120px; }
+
+  .about-inner { padding:48px 16px 60px; }
+  .about-cols { grid-template-columns:1fr; }
+
+  .contact-inner { padding:48px 16px 60px; }
+  .contact-form { padding:20px 16px; border-radius:14px; }
+
+  .modal-box { padding:22px 16px; border-radius:16px; }
+  .modal-title { font-size:17px; }
+  .payment-tabs { gap:5px; }
+  .pay-tab { padding:6px 10px; font-size:11px; }
+  .pay-form-row { grid-template-columns:1fr; }
+  .bank-row { flex-direction:column; }
+  .modal-price-val { font-size:18px; }
+
+  #cart-sidebar { width:100%; right:-100%; }
+  #cart-sidebar.open-mobile { right:0; }
+
+  footer { padding:20px 16px; font-size:11px; }
+
+  .toast { font-size:12px; padding:12px 20px; bottom:16px; white-space:normal; max-width:90vw; }
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤380px)
+   ═══════════════════════════════════════════════════ */
+@media (max-width:380px) {
+  .hero-title { font-size:36px; letter-spacing:-1px; }
+  .products-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-direction:column; align-items:center; gap:12px; border-top:none; padding-top:0; margin-top:24px; }
+}
 </style>
 </head>
 <body>
@@ -687,18 +777,19 @@ footer a:hover { color:#fff; }
     <div class="nav-logo-box"><span>SW</span></div>
     <div class="nav-brand">SILICON<br><small>WORKS</small></div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#" class="active" id="nav-home"       onclick="showSection('home',this); return false;">Home</a></li>
-    <li><a href="#" id="nav-components"                onclick="showSection('components',this); return false;">Components</a></li>
-    <li><a href="#" id="nav-contact"                   onclick="showSection('contact',this); return false;">Contact</a></li>
-    <li><a href="#" id="nav-about"                     onclick="showSection('about',this); return false;">About</a></li>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="#" class="active" id="nav-home"       onclick="showSection('home',this); closeMobileNav(); return false;">Home</a></li>
+    <li><a href="#" id="nav-components"                onclick="showSection('components',this); closeMobileNav(); return false;">Components</a></li>
+    <li><a href="#" id="nav-contact"                   onclick="showSection('contact',this); closeMobileNav(); return false;">Contact</a></li>
+    <li><a href="#" id="nav-about"                     onclick="showSection('about',this); closeMobileNav(); return false;">About</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HOME -->
 <section id="home" class="active">
-
-  <!-- HERO -->
   <div id="home-hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-container">
@@ -712,18 +803,9 @@ footer a:hover { color:#fff; }
           <a class="btn-outline" href="#" onclick="scrollToBuilds(); return false;">Custom Build</a>
         </div>
         <div class="hero-stats">
-          <div>
-            <div class="hero-stat-val">3+</div>
-            <div class="hero-stat-label">Packages</div>
-          </div>
-          <div>
-            <div class="hero-stat-val">84+</div>
-            <div class="hero-stat-label">Components</div>
-          </div>
-          <div>
-            <div class="hero-stat-val">4</div>
-            <div class="hero-stat-label">Pay Methods</div>
-          </div>
+          <div><div class="hero-stat-val">3+</div><div class="hero-stat-label">Packages</div></div>
+          <div><div class="hero-stat-val">84+</div><div class="hero-stat-label">Components</div></div>
+          <div><div class="hero-stat-val">4</div><div class="hero-stat-label">Pay Methods</div></div>
         </div>
       </div>
       <div class="hero-pc-wrapper">
@@ -742,14 +824,12 @@ footer a:hover { color:#fff; }
     </div>
   </div>
 
-  <!-- FIND YOUR BUILD — Entry | Mid | High order -->
+  <!-- FIND YOUR BUILD -->
   <div id="find-your-build" class="builds-gradient" style="scroll-margin-top:80px;">
     <div style="text-align:center;margin-bottom:10px;"><p class="section-eyebrow">Pre-Built PC Packages</p></div>
     <h2 class="section-title purple" style="text-align:center;font-size:clamp(40px,8vw,88px);margin-bottom:18px;">FIND YOUR BUILD</h2>
     <p class="section-desc" style="text-align:center;margin:0 auto 52px;">Thoughtfully designed packages for gaming, education, and office work — balanced performance across every budget range.</p>
-
     <div class="builds-grid">
-
       <!-- ENTRY -->
       <div class="build-card">
         <div class="build-pc-img">
@@ -765,7 +845,6 @@ footer a:hover { color:#fff; }
           <button class="build-order-btn" onclick="openModal('entry')">Order Now</button>
         </div>
       </div>
-
       <!-- MID (popular) -->
       <div class="build-card" style="transform:scale(1.04);">
         <div class="popular-badge">POPULAR</div>
@@ -783,7 +862,6 @@ footer a:hover { color:#fff; }
           <button class="build-order-btn" onclick="openModal('mid')">Order Now</button>
         </div>
       </div>
-
       <!-- HIGH -->
       <div class="build-card">
         <div class="build-pc-img">
@@ -801,13 +879,11 @@ footer a:hover { color:#fff; }
           <button class="build-order-btn" onclick="openModal('high')">Order Now</button>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- PACKAGES -->
   <div id="packages-section" style="padding:80px 48px;background:var(--sw-bg);">
-
     <p class="section-eyebrow">Complete System Packages</p>
 
     <!-- ENTRY -->
@@ -836,7 +912,7 @@ footer a:hover { color:#fff; }
           <li>CPU Cooler: Wraith Stealth (bundled)</li>
           <li>Keyboard: Meetion MT-K9200</li>
           <li>Mouse: A4Tech OP-330</li>
-          <li>Monitor: Acer K202HQL 19.5""</li>
+          <li>Monitor: Acer K202HQL 19.5"</li>
           <li>Webcam: A4Tech PK-910H</li>
         </ul></div>
         <div class="payment-methods">
@@ -845,9 +921,9 @@ footer a:hover { color:#fff; }
           <span class="pay-badge"><span class="dot bank"></span>Bank Transfer</span>
           <span class="pay-badge"><span class="dot cod"></span>COD</span>
         </div>
-      </div>
-      
-      
+        <div style="margin-top:16px;">
+          <button class="order-btn" onclick="openModal('entry')">Order Now</button>
+        </div>
       </div>
     </div>
 
@@ -891,8 +967,9 @@ footer a:hover { color:#fff; }
           <span class="pay-badge"><span class="dot bank"></span>Bank Transfer</span>
           <span class="pay-badge"><span class="dot cod"></span>COD</span>
         </div>
-      </div>
-
+        <div style="margin-top:16px;">
+          <button class="order-btn" onclick="openModal('mid')">Order Now</button>
+        </div>
       </div>
     </div>
 
@@ -940,11 +1017,11 @@ footer a:hover { color:#fff; }
           <span class="pay-badge"><span class="dot bank"></span>Bank Transfer</span>
           <span class="pay-badge"><span class="dot cod"></span>COD</span>
         </div>
-      </div>
-
+        <div style="margin-top:16px;">
+          <button class="order-btn" onclick="openModal('high')">Order Now</button>
+        </div>
       </div>
     </div>
-
   </div>
 
   <footer>
@@ -960,7 +1037,6 @@ footer a:hover { color:#fff; }
     <p class="section-eyebrow">Browse &amp; Build</p>
     <h2 class="section-title" style="margin-bottom:4px;">Component Parts</h2>
   </div>
-
   <div class="comp-tab-bar">
     <div class="comp-nav-inner">
       <button class="comp-tab active" onclick="filterComp('all',this)">All</button>
@@ -982,9 +1058,7 @@ footer a:hover { color:#fff; }
       </div>
     </div>
   </div>
-
   <div id="comp-content"></div>
-
   <footer>
     <span class="fw">SW SILICON WORKS</span>
     <span>© 2025 SiliconWorks Philippines. All rights reserved.</span>
@@ -1039,7 +1113,7 @@ footer a:hover { color:#fff; }
       <div class="about-col">
         <div class="about-col-icon">🛡️</div>
         <p class="about-col-title">After-Sales Support</p>
-        <p>Our relationship doesn't end at the sale. We provide comprehensive troubleshooting, warranty assistance, and repair services. </p>
+        <p>Our relationship doesn't end at the sale. We provide comprehensive troubleshooting, warranty assistance, and repair services.</p>
       </div>
     </div>
     <div class="contact-details">
@@ -1063,29 +1137,22 @@ footer a:hover { color:#fff; }
   </footer>
 </section>
 
-<!-- ═══════════════════════════════════════
-     PAYMENT MODAL
-     ═══════════════════════════════════════ -->
+<!-- PAYMENT MODAL -->
 <div class="modal-overlay" id="payment-modal">
   <div class="modal-box" id="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <h3 class="modal-title" id="modal-title">Place Your Order</h3>
     <p class="modal-sub" id="modal-sub">Complete the form below to confirm your order.</p>
-
-    <!-- Price summary bar -->
     <div class="modal-price-bar">
       <span class="modal-price-label" id="modal-build-label">Build Package</span>
       <span class="modal-price-val" id="modal-price-display">₱0</span>
     </div>
-
-    <!-- Payment method tabs -->
     <div class="payment-tabs" id="modal-pay-tabs">
       <button class="pay-tab active" data-method="gcash">GCash</button>
       <button class="pay-tab" data-method="maya">PayMaya</button>
       <button class="pay-tab" data-method="bank">Bank Transfer</button>
-      <button class="pay-tab" data-method="cod">Cash on Delivery</button>
+      <button class="pay-tab" data-method="cod">COD</button>
     </div>
-
     <!-- GCASH -->
     <div class="pay-form active" id="pay-gcash">
       <div class="pay-info-box">
@@ -1103,7 +1170,6 @@ footer a:hover { color:#fff; }
       <div class="form-group"><label>GCash Reference Number</label><input type="text" placeholder="e.g. 1234567890"></div>
       <button class="confirm-btn" onclick="confirmOrder('GCash')">✅ Confirm GCash Order</button>
     </div>
-
     <!-- MAYA -->
     <div class="pay-form" id="pay-maya">
       <div class="pay-info-box">
@@ -1121,7 +1187,6 @@ footer a:hover { color:#fff; }
       <div class="form-group"><label>PayMaya Reference Number</label><input type="text" placeholder="e.g. 1234567890"></div>
       <button class="confirm-btn" onclick="confirmOrder('PayMaya')">✅ Confirm PayMaya Order</button>
     </div>
-
     <!-- BANK -->
     <div class="pay-form" id="pay-bank">
       <div class="pay-info-box"><strong>Account Name: Silicon Works Philippines</strong>Choose your bank below and transfer the exact amount.</div>
@@ -1140,7 +1205,6 @@ footer a:hover { color:#fff; }
       <div class="form-group"><label>Transfer Reference Number</label><input type="text" placeholder="Transaction reference number"></div>
       <button class="confirm-btn" onclick="confirmOrder('Bank Transfer')">✅ Confirm Bank Transfer</button>
     </div>
-
     <!-- COD -->
     <div class="pay-form" id="pay-cod">
       <div class="cod-note">
@@ -1160,11 +1224,9 @@ footer a:hover { color:#fff; }
       <div class="form-group"><label>Nearest Landmark (optional)</label><input type="text" placeholder="e.g. Near SM Dasmariñas"></div>
       <button class="confirm-btn" onclick="confirmOrder('Cash on Delivery')">📦 Place COD Order</button>
     </div>
-
   </div>
 </div>
 
-<!-- Success Toast -->
 <div class="toast" id="toast"></div>
 
 <!-- CART SIDEBAR -->
@@ -1186,215 +1248,180 @@ footer a:hover { color:#fff; }
 <div id="cart-overlay" onclick="toggleCart()"></div>
 
 <script>
-/* ════════════════════════════════
-   PRODUCT DATA
-   ════════════════════════════════ */
+/* ════ PRODUCT DATA ════ */
 const products = {
-  cpu: [
-    { name:'AMD Ryzen 3 4300G',    spec:'4-core/8T · 4.0GHz · AM4 · Radeon Vega 6 iGPU · DDR4 · 65W · Boxed cooler',                          price:3200,  img:'https://everesttechnology.co.uk/media/catalog/product/cache/1/image/946x946/9df78eab33525d08d6e5fb8d27136e95/p/r/pramd-4300g-lg.jpg', brand:'amd'   },
-    { name:'AMD Ryzen 5 5600G',    spec:'6-core/12T · 4.4GHz · AM4 · Radeon Vega 7 iGPU · DDR4 · 65W · Wraith Stealth',                        price:4500,  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3IMVb3ZMo7-AIS9NAovGChIFbLNcCkc8HuA&s', brand:'amd'   },
-    { name:'Intel Core i3-12100',  spec:'4-core/8T · 4.3GHz · LGA1700 · UHD 730 iGPU · DDR4/DDR5 · 60W · Boxed cooler',                       price:5200,  img:'https://cdn1.centrecom.com.au/images/upload/0119357_thumb.jpeg', brand:'intel' },
-    { name:'AMD Ryzen 5 5600',     spec:'6-core/12T · 4.4GHz · AM4 · No iGPU · DDR4 · 65W · No stock cooler',                                  price:4200,  img:'https://shop.villman.com/cdn/shop/files/S1_97e01d53-d550-4b52-94c5-fcf0d89b73bc_800x.jpg', brand:'amd'   },
-    { name:'Intel Core i5-12400F', spec:'6-core/12T · 4.4GHz · LGA1700 · No iGPU · DDR4/DDR5 · 65W · Boxed cooler',                           price:7500,  img:'https://pcinternational.co.za/wp-content/uploads/BX8071512400.webp', brand:'intel' },
-    { name:'Intel Core i5-14600K', spec:'14-core/20T · 5.3GHz · LGA1700 · UHD 770 · DDR4/DDR5 · 125W · No cooler',                            price:12500, img:'https://production-rdj-web-asset.s3.ap-east-1.amazonaws.com/products/cpu/details/1829/image/thumbnail/intel-core-i5-14600k-lga1700-without-cooler-boxed-1762566144.jpg', brand:'intel' },
-    { name:'AMD Ryzen 7 7700X',    spec:'8-core/16T · 5.4GHz · AM5 · DDR5 · 105W · No stock cooler · Zen 4',                                   price:18000, img:'https://netcodex.ph/wp-content/uploads/2024/08/AMD-Ryzen-7-7700x.jpg', brand:'amd'   },
+  cpu:[
+    {name:'AMD Ryzen 3 4300G',spec:'4-core/8T · 4.0GHz · AM4 · Radeon Vega 6 iGPU · DDR4 · 65W · Boxed cooler',price:3200,img:'https://everesttechnology.co.uk/media/catalog/product/cache/1/image/946x946/9df78eab33525d08d6e5fb8d27136e95/p/r/pramd-4300g-lg.jpg',brand:'amd'},
+    {name:'AMD Ryzen 5 5600G',spec:'6-core/12T · 4.4GHz · AM4 · Radeon Vega 7 iGPU · DDR4 · 65W · Wraith Stealth',price:4500,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3IMVb3ZMo7-AIS9NAovGChIFbLNcCkc8HuA&s',brand:'amd'},
+    {name:'Intel Core i3-12100',spec:'4-core/8T · 4.3GHz · LGA1700 · UHD 730 iGPU · DDR4/DDR5 · 60W · Boxed cooler',price:5200,img:'https://cdn1.centrecom.com.au/images/upload/0119357_thumb.jpeg',brand:'intel'},
+    {name:'AMD Ryzen 5 5600',spec:'6-core/12T · 4.4GHz · AM4 · No iGPU · DDR4 · 65W · No stock cooler',price:4200,img:'https://shop.villman.com/cdn/shop/files/S1_97e01d53-d550-4b52-94c5-fcf0d89b73bc_800x.jpg',brand:'amd'},
+    {name:'Intel Core i5-12400F',spec:'6-core/12T · 4.4GHz · LGA1700 · No iGPU · DDR4/DDR5 · 65W · Boxed cooler',price:7500,img:'https://pcinternational.co.za/wp-content/uploads/BX8071512400.webp',brand:'intel'},
+    {name:'Intel Core i5-14600K',spec:'14-core/20T · 5.3GHz · LGA1700 · UHD 770 · DDR4/DDR5 · 125W · No cooler',price:12500,img:'https://production-rdj-web-asset.s3.ap-east-1.amazonaws.com/products/cpu/details/1829/image/thumbnail/intel-core-i5-14600k-lga1700-without-cooler-boxed-1762566144.jpg',brand:'intel'},
+    {name:'AMD Ryzen 7 7700X',spec:'8-core/16T · 5.4GHz · AM5 · DDR5 · 105W · No stock cooler · Zen 4',price:18000,img:'https://netcodex.ph/wp-content/uploads/2024/08/AMD-Ryzen-7-7700x.jpg',brand:'amd'},
   ],
-  ram: [
-    { name:'Kingston Fury Beast 8GB',          spec:'1×8GB · DDR4-3200 · Non-ECC · 288-pin DIMM',                                               price:1100, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/g465sadg4asd5g_800x.jpg?v=1769478338', brand:'' },
-    { name:'Kingston Fury Beast 16GB',         spec:'2×8GB · DDR4-3200 · CL16 · XMP 2.0 · Dual channel',                                       price:2200, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0740617319903_800x.jpg?v=1761985691', brand:'' },
-    { name:'G.Skill Ripjaws V 16GB',           spec:'2×8GB · DDR4-3600 · CL18 · XMP 2.0 · Red heatspreader',                                   price:2600, img:'https://m.media-amazon.com/images/I/71wmfXqsqZL._AC_UF1000,1000_QL80_.jpg', brand:'' },
-    { name:'Corsair Vengeance RGB 16GB',       spec:'2×8GB · DDR4-3200 · CL16 · ARGB lighting · iCUE compatible',                              price:2800, img:'https://bermorzone.com.ph/wp-content/uploads/2021/09/20-236-768-V01.jpg', brand:'' },
-    { name:'Kingston Fury Beast 32GB',         spec:'2×16GB · DDR4-3200 · CL16 · XMP 2.0 · Dual channel',                                      price:4000, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0740617330373.jpg?v=1732180240', brand:'' },
-    { name:'Lexar Thor 16GB DDR5',             spec:'2×8GB · DDR5-6000 · CL38 · XMP 3.0 · AM5/LGA1700 only',                                   price:3200, img:'https://gameone.ph/media/catalog/product/mpiowebpcache/d378a0f20f83637cdb1392af8dc032a2/l/e/lexar-thor-oc-16gb-cover.webp', brand:'' },
-    { name:'G.Skill Trident Z5 32GB DDR5',    spec:'2×16GB · DDR5-6400 · CL32 · XMP 3.0 · RGB · AM5/LGA1700',                                 price:7500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/164974895410_a0d7bd18-9804-4c1a-b18c-7338704d69d5_1024x.jpg?v=1691379343', brand:'' },
+  ram:[
+    {name:'Kingston Fury Beast 8GB',spec:'1×8GB · DDR4-3200 · Non-ECC · 288-pin DIMM',price:1100,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/g465sadg4asd5g_800x.jpg?v=1769478338',brand:''},
+    {name:'Kingston Fury Beast 16GB',spec:'2×8GB · DDR4-3200 · CL16 · XMP 2.0 · Dual channel',price:2200,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0740617319903_800x.jpg?v=1761985691',brand:''},
+    {name:'G.Skill Ripjaws V 16GB',spec:'2×8GB · DDR4-3600 · CL18 · XMP 2.0 · Red heatspreader',price:2600,img:'https://m.media-amazon.com/images/I/71wmfXqsqZL._AC_UF1000,1000_QL80_.jpg',brand:''},
+    {name:'Corsair Vengeance RGB 16GB',spec:'2×8GB · DDR4-3200 · CL16 · ARGB lighting · iCUE compatible',price:2800,img:'https://bermorzone.com.ph/wp-content/uploads/2021/09/20-236-768-V01.jpg',brand:''},
+    {name:'Kingston Fury Beast 32GB',spec:'2×16GB · DDR4-3200 · CL16 · XMP 2.0 · Dual channel',price:4000,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0740617330373.jpg?v=1732180240',brand:''},
+    {name:'Lexar Thor 16GB DDR5',spec:'2×8GB · DDR5-6000 · CL38 · XMP 3.0 · AM5/LGA1700 only',price:3200,img:'https://gameone.ph/media/catalog/product/mpiowebpcache/d378a0f20f83637cdb1392af8dc032a2/l/e/lexar-thor-oc-16gb-cover.webp',brand:''},
+    {name:'G.Skill Trident Z5 32GB DDR5',spec:'2×16GB · DDR5-6400 · CL32 · XMP 3.0 · RGB · AM5/LGA1700',price:7500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/164974895410_a0d7bd18-9804-4c1a-b18c-7338704d69d5_1024x.jpg?v=1691379343',brand:''},
   ],
-  gpu: [
-    { name:'AMD Radeon RX 6500 XT 4GB',       spec:'4GB GDDR6 · 64-bit · PCIe 4.0 x4 · 1080p budget · ~107W',                                  price:5000,  img:'https://static.gigabyte.com/StaticFile/Image/Global/d15cad83e1c2762011697825f65a467a/ProductRemoveBg/30743', brand:'amd'    },
-    { name:'AMD Radeon RX 6600 8GB',          spec:'8GB GDDR6 · 128-bit · FSR 2.0 · Strong 1080p · ~132W',                                     price:8500,  img:'https://easypc.com.ph/cdn/shop/files/ASUS_Dual_Radeon_RX_6600_DUAL-RX6600-8G-V3_8GB_128-bit_GDDR6_Videocard-d_2048x.png?v=1720510083', brand:'amd'    },
-    { name:'NVIDIA GeForce RTX 3060 12GB',    spec:'12GB GDDR6 · 192-bit · DLSS 2.0 · 1080p–1440p · ~170W',                                    price:12000, img:'https://easypc.com.ph/cdn/shop/products/MSI_RTX_3060_Ventus_2X_OC-a_2048x.jpg?v=1697068614', brand:'nvidia' },
-    { name:'AMD Radeon RX 7600 8GB',          spec:'8GB GDDR6 · 128-bit · FSR 3 · 1080p/1440p · ~165W',                                        price:12500, img:'https://www.itech.ph/wp-content/uploads/2023/08/Sapphire-Pulse-AMD-Radeon-RX-7600-8GB-DDR6-1-jpg.webp', brand:'amd'    },
-    { name:'NVIDIA GeForce RTX 4060 8GB',     spec:'8GB GDDR6 · 128-bit · DLSS 3 / Frame Gen · ~115W',                                         price:15000, img:'https://netcodex.ph/wp-content/uploads/2024/08/GIGABYTE-GeForce-RTX-4060-Gaming-OC-8G-Graphics-Card.jpg', brand:'nvidia' },
-    { name:'AMD Radeon RX 7700 XT 12GB',      spec:'12GB GDDR6 · 192-bit · FSR 3 · Strong 1440p · ~245W',                                      price:18500, img:'https://bermorzone.com.ph/wp-content/uploads/2023/08/sapphire-rx-7700-xt-ph-btz-64eeef2d6be20.webp', brand:'amd'    },
-    { name:'NVIDIA GeForce RTX 4070 12GB',    spec:'12GB GDDR6X · 192-bit · DLSS 3 / Frame Gen · 1440p–4K · ~200W',                            price:28000, img:'https://netcodex.ph/wp-content/uploads/2024/12/MSI-Nvidia-Geforce-RTX-4070-GAMING-X-SLIM-12G-Black-192-bit-12GB-GDDR6X-Graphics-Card.png', brand:'nvidia' },
+  gpu:[
+    {name:'AMD Radeon RX 6500 XT 4GB',spec:'4GB GDDR6 · 64-bit · PCIe 4.0 x4 · 1080p budget · ~107W',price:5000,img:'https://static.gigabyte.com/StaticFile/Image/Global/d15cad83e1c2762011697825f65a467a/ProductRemoveBg/30743',brand:'amd'},
+    {name:'AMD Radeon RX 6600 8GB',spec:'8GB GDDR6 · 128-bit · FSR 2.0 · Strong 1080p · ~132W',price:8500,img:'https://easypc.com.ph/cdn/shop/files/ASUS_Dual_Radeon_RX_6600_DUAL-RX6600-8G-V3_8GB_128-bit_GDDR6_Videocard-d_2048x.png?v=1720510083',brand:'amd'},
+    {name:'NVIDIA GeForce RTX 3060 12GB',spec:'12GB GDDR6 · 192-bit · DLSS 2.0 · 1080p–1440p · ~170W',price:12000,img:'https://easypc.com.ph/cdn/shop/products/MSI_RTX_3060_Ventus_2X_OC-a_2048x.jpg?v=1697068614',brand:'nvidia'},
+    {name:'AMD Radeon RX 7600 8GB',spec:'8GB GDDR6 · 128-bit · FSR 3 · 1080p/1440p · ~165W',price:12500,img:'https://www.itech.ph/wp-content/uploads/2023/08/Sapphire-Pulse-AMD-Radeon-RX-7600-8GB-DDR6-1-jpg.webp',brand:'amd'},
+    {name:'NVIDIA GeForce RTX 4060 8GB',spec:'8GB GDDR6 · 128-bit · DLSS 3 / Frame Gen · ~115W',price:15000,img:'https://netcodex.ph/wp-content/uploads/2024/08/GIGABYTE-GeForce-RTX-4060-Gaming-OC-8G-Graphics-Card.jpg',brand:'nvidia'},
+    {name:'AMD Radeon RX 7700 XT 12GB',spec:'12GB GDDR6 · 192-bit · FSR 3 · Strong 1440p · ~245W',price:18500,img:'https://bermorzone.com.ph/wp-content/uploads/2023/08/sapphire-rx-7700-xt-ph-btz-64eeef2d6be20.webp',brand:'amd'},
+    {name:'NVIDIA GeForce RTX 4070 12GB',spec:'12GB GDDR6X · 192-bit · DLSS 3 / Frame Gen · 1440p–4K · ~200W',price:28000,img:'https://netcodex.ph/wp-content/uploads/2024/12/MSI-Nvidia-Geforce-RTX-4070-GAMING-X-SLIM-12G-Black-192-bit-12GB-GDDR6X-Graphics-Card.png',brand:'nvidia'},
   ],
-  case: [
-    { name:'Tecware Nexus M',          spec:'mATX · Micro-tower · Mesh front · 1×120mm fan · TG side',                                          price:750,  img:'https://bermorzone.com.ph/wp-content/uploads/2018/08/38806856_400392730486590_1306651019924471808_n.jpg', brand:'' },
-    { name:'DeepCool MATREXX 30',      spec:'mATX Mid-tower · TG side · 1×120mm fan · Steel body',                                              price:900,  img:'https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/Cases/MATREXX_30_SI/Gallery/800X800/02.jpg', brand:'' },
-    { name:'Tecware Forge M',          spec:'ATX Mid-tower · Mesh front · ARGB fans (3×120mm) · TG side',                                       price:1800, img:'https://bermorzone.com.ph/wp-content/uploads/2021/10/tecware_forge_m_argb_tempered_glass_minitower_microatx_case_ac35839_8-600x600.jpg', brand:'' },
-    { name:'DeepCool CC560',           spec:'ATX Mid-tower · 4×ARGB fans · TG side & front · Excellent airflow',                                price:2500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/bfdbfbf.jpg?v=1713610083', brand:'' },
-    { name:'Phanteks Eclipse G360A',   spec:'ATX Mid-tower · 3×120mm ARGB · Mesh front · TG · High airflow',                                    price:3800, img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/G360A_20black_2001.jpg?v=1676921090', brand:'' },
-    { name:'Lian Li LANCOOL 205',      spec:'ATX Mid-tower · 2×200mm ARGB front fans · TG · Excellent thermals',                                price:4500, img:'https://lian-li.com/wp-content/uploads/2020/11/205meshRGB.jpg', brand:'' },
-    { name:'Fractal Design Pop Air',   spec:'ATX Mid-tower · Mesh panels · 3×120mm fans · TG · Premium build',                                  price:5500, img:'https://www.fractal-design.com/app/uploads/2026/01/01_Pop-2-Air_RGB_Black_TGL_Left-Front-2.jpg', brand:'' },
+  case:[
+    {name:'Tecware Nexus M',spec:'mATX · Micro-tower · Mesh front · 1×120mm fan · TG side',price:750,img:'https://bermorzone.com.ph/wp-content/uploads/2018/08/38806856_400392730486590_1306651019924471808_n.jpg',brand:''},
+    {name:'DeepCool MATREXX 30',spec:'mATX Mid-tower · TG side · 1×120mm fan · Steel body',price:900,img:'https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/Cases/MATREXX_30_SI/Gallery/800X800/02.jpg',brand:''},
+    {name:'Tecware Forge M',spec:'ATX Mid-tower · Mesh front · ARGB fans (3×120mm) · TG side',price:1800,img:'https://bermorzone.com.ph/wp-content/uploads/2021/10/tecware_forge_m_argb_tempered_glass_minitower_microatx_case_ac35839_8-600x600.jpg',brand:''},
+    {name:'DeepCool CC560',spec:'ATX Mid-tower · 4×ARGB fans · TG side & front · Excellent airflow',price:2500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/bfdbfbf.jpg?v=1713610083',brand:''},
+    {name:'Phanteks Eclipse G360A',spec:'ATX Mid-tower · 3×120mm ARGB · Mesh front · TG · High airflow',price:3800,img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/G360A_20black_2001.jpg?v=1676921090',brand:''},
+    {name:'Lian Li LANCOOL 205',spec:'ATX Mid-tower · 2×200mm ARGB front fans · TG · Excellent thermals',price:4500,img:'https://lian-li.com/wp-content/uploads/2020/11/205meshRGB.jpg',brand:''},
+    {name:'Fractal Design Pop Air',spec:'ATX Mid-tower · Mesh panels · 3×120mm fans · TG · Premium build',price:5500,img:'https://www.fractal-design.com/app/uploads/2026/01/01_Pop-2-Air_RGB_Black_TGL_Left-Front-2.jpg',brand:''},
   ],
-  mb: [
-    { name:'ASUS Prime A520M-K',        spec:'mATX · AM4 · DDR4 · PCIe 3.0 · USB 3.2 · 1×M.2 · Budget Ryzen',                                 price:2800, img:'https://www.asus.com/media/global/products/klnhxkefsyvowbzy/P_setting_xxx_0_90_end_500.png', brand:'' },
-    { name:'MSI B450M PRO-VDH Max',     spec:'mATX · AM4 · DDR4 · PCIe 3.0 · USB 3.2 · 2×M.2',                                                price:3200, img:'https://storage-asset.msi.com/global/picture/product/product_6_20190708134634_5d22d8bac2965.webp', brand:'' },
-    { name:'ASUS TUF Gaming B550M-Plus',spec:'mATX · AM4 · DDR4 · PCIe 4.0 · Wi-Fi · 2×M.2 · Solid VRM',                                      price:5500, img:'https://dlcdnwebimgs.asus.com/gain/28ba936c-41c8-4f4e-b639-29c65ec0b427/w692', brand:'' },
-    { name:'MSI PRO B660M-A DDR4',      spec:'mATX · LGA1700 · DDR4 · PCIe 4.0 · 2×M.2 · 2.5G LAN',                                           price:5000, img:'https://m.media-amazon.com/images/I/71UDjHGN9jL._AC_UF894,1000_QL80_.jpg', brand:'' },
-    { name:'MSI MAG B760M Mortar WiFi', spec:'mATX · LGA1700 · DDR5 · PCIe 5.0 · Wi-Fi 6E · 2.5G LAN · 3×M.2',                                price:7500, img:'https://m.media-amazon.com/images/I/81vsEbgkIrL._AC_UF894,1000_QL80_.jpg', brand:'' },
-    { name:'ASUS Prime B650M-A WiFi',   spec:'mATX · AM5 · DDR5 · PCIe 5.0 · Wi-Fi 6 · 2×M.2',                                                price:8000, img:'https://bermorzone.com.ph/wp-content/uploads/2022/10/Prime-B650M-A-WIFI-II-btz-ph-1.webp', brand:'' },
-    { name:'ASUS ROG STRIX B650E-F',    spec:'ATX · AM5 · DDR5 · PCIe 5.0 · Wi-Fi 6E · 4×M.2 · Thunderbolt 4',                                price:14500,img:'https://m.media-amazon.com/images/I/814z1MeUZyL._AC_UF350,350_QL50_.jpg', brand:'' },
+  mb:[
+    {name:'ASUS Prime A520M-K',spec:'mATX · AM4 · DDR4 · PCIe 3.0 · USB 3.2 · 1×M.2 · Budget Ryzen',price:2800,img:'https://www.asus.com/media/global/products/klnhxkefsyvowbzy/P_setting_xxx_0_90_end_500.png',brand:''},
+    {name:'MSI B450M PRO-VDH Max',spec:'mATX · AM4 · DDR4 · PCIe 3.0 · USB 3.2 · 2×M.2',price:3200,img:'https://storage-asset.msi.com/global/picture/product/product_6_20190708134634_5d22d8bac2965.webp',brand:''},
+    {name:'ASUS TUF Gaming B550M-Plus',spec:'mATX · AM4 · DDR4 · PCIe 4.0 · Wi-Fi · 2×M.2 · Solid VRM',price:5500,img:'https://dlcdnwebimgs.asus.com/gain/28ba936c-41c8-4f4e-b639-29c65ec0b427/w692',brand:''},
+    {name:'MSI PRO B660M-A DDR4',spec:'mATX · LGA1700 · DDR4 · PCIe 4.0 · 2×M.2 · 2.5G LAN',price:5000,img:'https://m.media-amazon.com/images/I/71UDjHGN9jL._AC_UF894,1000_QL80_.jpg',brand:''},
+    {name:'MSI MAG B760M Mortar WiFi',spec:'mATX · LGA1700 · DDR5 · PCIe 5.0 · Wi-Fi 6E · 2.5G LAN · 3×M.2',price:7500,img:'https://m.media-amazon.com/images/I/81vsEbgkIrL._AC_UF894,1000_QL80_.jpg',brand:''},
+    {name:'ASUS Prime B650M-A WiFi',spec:'mATX · AM5 · DDR5 · PCIe 5.0 · Wi-Fi 6 · 2×M.2',price:8000,img:'https://bermorzone.com.ph/wp-content/uploads/2022/10/Prime-B650M-A-WIFI-II-btz-ph-1.webp',brand:''},
+    {name:'ASUS ROG STRIX B650E-F',spec:'ATX · AM5 · DDR5 · PCIe 5.0 · Wi-Fi 6E · 4×M.2 · Thunderbolt 4',price:14500,img:'https://m.media-amazon.com/images/I/814z1MeUZyL._AC_UF350,350_QL50_.jpg',brand:''},
   ],
-  storage: [
-    { name:'Kingston A400 480GB SATA',   spec:'2.5" SATA SSD · R500/W450 MB/s · TLC NAND · 3-year',                                            price:900,  img:'https://d3bkgvrq5dqryp.cloudfront.net/Custom/Content/Products/23/50/23503_product-00081795_m9_638261385797593517.webp', brand:'' },
-    { name:'Kingston NV2 500GB NVMe',    spec:'M.2 2280 · PCIe 4.0 · R3500/W2100 MB/s · 3-year',                                               price:1500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/ktc-product-ssd-snv2s-500g-3-zm-lg_800x.jpg?v=1676918153', brand:'' },
-    { name:'Kingston NV2 1TB NVMe',      spec:'M.2 2280 · PCIe 4.0 · R3500/W2800 MB/s · 3-year · Best value',                                  price:2500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/ktc-product-ssd-snv2s-1000g-3-zm-lg_800x.jpg?v=1676918153', brand:'' },
-    { name:'Seagate Barracuda 2TB HDD',  spec:'3.5" SATA · 7200 RPM · 256MB cache · Mass storage',                                             price:2800, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/bdfbdfdbfd_f45afb29-dc98-495f-ab4f-00b20fc18b62.jpg?v=1719541858', brand:'' },
-    { name:'Samsung 870 EVO 1TB SATA',   spec:'2.5" SATA SSD · R560/W530 MB/s · MLC V-NAND · 5-year',                                          price:3500, img:'https://jgsuperstore.com/cdn/shop/products/sg-870-evo-sata-3-2-5-ssd-mz-77e1t0bw-367310340.jpg?v=1657523115', brand:'' },
-    { name:'WD Black SN770 1TB NVMe',    spec:'M.2 2280 · PCIe 4.0 · R5150/W4900 MB/s · 5-year · Gaming',                                      price:4000, img:'https://m.media-amazon.com/images/I/71+7Y1MFojL._AC_UF1000,1000_QL80_.jpg', brand:'' },
-    { name:'Samsung 980 Pro 2TB NVMe',   spec:'M.2 2280 · PCIe 4.0 · R7000/W5100 MB/s · 5-year · Professional',                                price:8500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/SAHGJGHJHG_1024x.jpg?v=1705736090', brand:'' },
+  storage:[
+    {name:'Kingston A400 480GB SATA',spec:'2.5" SATA SSD · R500/W450 MB/s · TLC NAND · 3-year',price:900,img:'https://d3bkgvrq5dqryp.cloudfront.net/Custom/Content/Products/23/50/23503_product-00081795_m9_638261385797593517.webp',brand:''},
+    {name:'Kingston NV2 500GB NVMe',spec:'M.2 2280 · PCIe 4.0 · R3500/W2100 MB/s · 3-year',price:1500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/ktc-product-ssd-snv2s-500g-3-zm-lg_800x.jpg?v=1676918153',brand:''},
+    {name:'Kingston NV2 1TB NVMe',spec:'M.2 2280 · PCIe 4.0 · R3500/W2800 MB/s · 3-year · Best value',price:2500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/ktc-product-ssd-snv2s-1000g-3-zm-lg_800x.jpg?v=1676918153',brand:''},
+    {name:'Seagate Barracuda 2TB HDD',spec:'3.5" SATA · 7200 RPM · 256MB cache · Mass storage',price:2800,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/bdfbdfdbfd_f45afb29-dc98-495f-ab4f-00b20fc18b62.jpg?v=1719541858',brand:''},
+    {name:'Samsung 870 EVO 1TB SATA',spec:'2.5" SATA SSD · R560/W530 MB/s · MLC V-NAND · 5-year',price:3500,img:'https://jgsuperstore.com/cdn/shop/products/sg-870-evo-sata-3-2-5-ssd-mz-77e1t0bw-367310340.jpg?v=1657523115',brand:''},
+    {name:'WD Black SN770 1TB NVMe',spec:'M.2 2280 · PCIe 4.0 · R5150/W4900 MB/s · 5-year · Gaming',price:4000,img:'https://m.media-amazon.com/images/I/71+7Y1MFojL._AC_UF1000,1000_QL80_.jpg',brand:''},
+    {name:'Samsung 980 Pro 2TB NVMe',spec:'M.2 2280 · PCIe 4.0 · R7000/W5100 MB/s · 5-year · Professional',price:8500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/SAHGJGHJHG_1024x.jpg?v=1705736090',brand:''},
   ],
-  psu: [
-    { name:'FSP 450W 80+ Bronze',         spec:'450W · 80+ Bronze · Non-modular · OVP/OCP/SCP · 2-year',                                        price:1500, img:'https://m.media-amazon.com/images/I/71q1dFzrUTL.jpg', brand:'' },
-    { name:'MSI MAG A550BN',              spec:'550W · 80+ Bronze · Non-modular · 120mm fan · 5-year',                                          price:2000, img:'https://www.vividrepairs.co.uk/wp-content/uploads/2026/01/MSI-MAG-A550BN-Power-Supply-EU-Plug-550-W-80-Plus-dee63e5d-768x768.jpg', brand:'' },
-    { name:'Corsair CV650',               spec:'650W · 80+ Bronze · Non-modular · OVP/OCP · 3-year',                                            price:2500, img:'https://img.lazcdn.com/g/p/8b83e23617e83a6d3a5c5c0162359fef.jpg_720x720q80.jpg', brand:'' },
-    { name:'Sama G650 Gold',              spec:'650W · 80+ Gold · Non-modular · 120mm fan · 5-year',                                            price:2800, img:'https://dynaquestpc.com/cdn/shop/files/220_d44b6ee6-7d50-4440-bf5b-baa7017eae51.png?v=1756434805', brand:'' },
-    { name:'DeepCool PQ650M Gold',        spec:'650W · 80+ Gold · Semi-modular · 120mm fan · 10-year',                                          price:3500, img:'https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/PowerSupplyUnits/PQ650M/Gallery/608X760/06.jpg', brand:'' },
-    { name:'Seasonic Focus GX-750',       spec:'750W · 80+ Gold · Fully modular · FDB fan · 10-year · Premium',                                 price:5500, img:'https://netcodex.ph/wp-content/uploads/2025/07/ATX3.1-FOCUS-GX-750-PSU-Box-1462x1080-1.webp', brand:'' },
-    { name:'Corsair RM850x Gold',         spec:'850W · 80+ Gold · Fully modular · Zero RPM mode · 10-year',                                     price:7000, img:'https://gameone.ph/media/catalog/product/mpiowebpcache/d378a0f20f83637cdb1392af8dc032a2/c/o/corsair-rm850x-850w-cybenetics-gold-power-supply-_cp-9020270-na_-cover8.webp', brand:'' },
+  psu:[
+    {name:'FSP 450W 80+ Bronze',spec:'450W · 80+ Bronze · Non-modular · OVP/OCP/SCP · 2-year',price:1500,img:'https://m.media-amazon.com/images/I/71q1dFzrUTL.jpg',brand:''},
+    {name:'MSI MAG A550BN',spec:'550W · 80+ Bronze · Non-modular · 120mm fan · 5-year',price:2000,img:'https://www.vividrepairs.co.uk/wp-content/uploads/2026/01/MSI-MAG-A550BN-Power-Supply-EU-Plug-550-W-80-Plus-dee63e5d-768x768.jpg',brand:''},
+    {name:'Corsair CV650',spec:'650W · 80+ Bronze · Non-modular · OVP/OCP · 3-year',price:2500,img:'https://img.lazcdn.com/g/p/8b83e23617e83a6d3a5c5c0162359fef.jpg_720x720q80.jpg',brand:''},
+    {name:'Sama G650 Gold',spec:'650W · 80+ Gold · Non-modular · 120mm fan · 5-year',price:2800,img:'https://dynaquestpc.com/cdn/shop/files/220_d44b6ee6-7d50-4440-bf5b-baa7017eae51.png?v=1756434805',brand:''},
+    {name:'DeepCool PQ650M Gold',spec:'650W · 80+ Gold · Semi-modular · 120mm fan · 10-year',price:3500,img:'https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/PowerSupplyUnits/PQ650M/Gallery/608X760/06.jpg',brand:''},
+    {name:'Seasonic Focus GX-750',spec:'750W · 80+ Gold · Fully modular · FDB fan · 10-year · Premium',price:5500,img:'https://netcodex.ph/wp-content/uploads/2025/07/ATX3.1-FOCUS-GX-750-PSU-Box-1462x1080-1.webp',brand:''},
+    {name:'Corsair RM850x Gold',spec:'850W · 80+ Gold · Fully modular · Zero RPM mode · 10-year',price:7000,img:'https://gameone.ph/media/catalog/product/mpiowebpcache/d378a0f20f83637cdb1392af8dc032a2/c/o/corsair-rm850x-850w-cybenetics-gold-power-supply-_cp-9020270-na_-cover8.webp',brand:''},
   ],
-  cooler: [
-    { name:'DeepCool AG300',                     spec:'Single tower · 92mm fan · TDP 130W · AM4/AM5/LGA1700',                                   price:600,  img:'https://www.dateks.lv/images/pic/1200/1200/689/1307.jpg', brand:'' },
-    { name:'Thermalright Assassin X 120 SE',     spec:'Single tower · 120mm fan · TDP 200W · AM4/AM5/LGA1700',                                  price:900,  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-InOOsL5pJk4P4XBNtsCsHd477yhIeo9XXQ&s', brand:'' },
-    { name:'ID-Cooling SE-224-XTS',              spec:'4 heat pipe · 120mm PWM fan · TDP 200W · Great value',                                   price:1200, img:'https://m.media-amazon.com/images/I/61Eih6M3ppL._AC_UF1000,1000_QL80_.jpg', brand:'' },
-    { name:'DeepCool AK400',                     spec:'4 heat pipe · 120mm PWM fan · TDP 220W · Popular mid-range',                             price:1800, img:'https://m.media-amazon.com/images/I/81H7-VBJb6L._SL1500_.jpg', brand:'' },
-    { name:'Thermalright Peerless Assassin 120 SE',spec:'Dual tower · 2×120mm fans · TDP 250W · Top value air cooler',                          price:2500, img:'https://bermorzone.com.ph/wp-content/uploads/2025/08/Peerless-Assassin-120-SE-btz-ph-2.webp', brand:'' },
-    { name:'DeepCool LT520 AIO 240mm',           spec:'240mm AIO · 2×120mm fans · TDP 350W+ · LCD display',                                     price:4500, img:'https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/Cooling/CPULiquidCoolers/LT520/Gallery/800X800/01.jpg', brand:'' },
-    { name:'Corsair iCUE H150i Elite LCD',        spec:'360mm AIO · 3×120mm fans · LCD pump · iCUE RGB · TDP 350W+',                            price:9500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/base-elite-lcd-xt-cooler-config-Gallery-H150i-ELITE-LCD-XT-01_600x600_crop_center.jpg?v=1677830102', brand:'' },
+  cooler:[
+    {name:'DeepCool AG300',spec:'Single tower · 92mm fan · TDP 130W · AM4/AM5/LGA1700',price:600,img:'https://www.dateks.lv/images/pic/1200/1200/689/1307.jpg',brand:''},
+    {name:'Thermalright Assassin X 120 SE',spec:'Single tower · 120mm fan · TDP 200W · AM4/AM5/LGA1700',price:900,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-InOOsL5pJk4P4XBNtsCsHd477yhIeo9XXQ&s',brand:''},
+    {name:'ID-Cooling SE-224-XTS',spec:'4 heat pipe · 120mm PWM fan · TDP 200W · Great value',price:1200,img:'https://m.media-amazon.com/images/I/61Eih6M3ppL._AC_UF1000,1000_QL80_.jpg',brand:''},
+    {name:'DeepCool AK400',spec:'4 heat pipe · 120mm PWM fan · TDP 220W · Popular mid-range',price:1800,img:'https://m.media-amazon.com/images/I/81H7-VBJb6L._SL1500_.jpg',brand:''},
+    {name:'Thermalright Peerless Assassin 120 SE',spec:'Dual tower · 2×120mm fans · TDP 250W · Top value air cooler',price:2500,img:'https://bermorzone.com.ph/wp-content/uploads/2025/08/Peerless-Assassin-120-SE-btz-ph-2.webp',brand:''},
+    {name:'DeepCool LT520 AIO 240mm',spec:'240mm AIO · 2×120mm fans · TDP 350W+ · LCD display',price:4500,img:'https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/Cooling/CPULiquidCoolers/LT520/Gallery/800X800/01.jpg',brand:''},
+    {name:'Corsair iCUE H150i Elite LCD',spec:'360mm AIO · 3×120mm fans · LCD pump · iCUE RGB · TDP 350W+',price:9500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/products/base-elite-lcd-xt-cooler-config-Gallery-H150i-ELITE-LCD-XT-01_600x600_crop_center.jpg?v=1677830102',brand:''},
   ],
-  monitor: [
-    { name:'Acer K202HQL 19.5"',     spec:'19.5" · 1366x768 · TN · 60Hz · VGA+HDMI · Slim bezel · Office / basic use',                          price:3500,  img:'https://fastlink.ph/cdn/shop/products/AcerK202HQLAbi_1.png?v=1628065991', brand:'' },
-    { name:'Philips 221V8 21.5"',    spec:'21.5" · 1920x1080 FHD · VA · 75Hz · HDMI · Ultra-slim · Eye protection · Flicker-free',              price:4500,  img:'https://images.philips.com/is/image/philipsconsumer/a03c6f52723045f29e30b01b00c223e9?$pnglarge$&wid=700&hei=700', brand:'' },
-    { name:'LG 24MK430H-B 23.8"',   spec:'23.8" · 1920x1080 FHD · IPS · 75Hz · AMD FreeSync · HDMI+VGA · Thin bezel',                           price:5500,  img:'https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/0631f9c0-0b90-4f01-bc55-8a2fded9a3f8/md05919436-MK430H-Z1-jpg', brand:'' },
-    { name:'Acer Nitro VG240Y 23.8"',spec:'23.8" · 1920x1080 FHD · IPS · 144Hz · AMD FreeSync · HDMI+DP · Gaming monitor',                      price:7000,  img:'https://www.gigahertz.com.ph/cdn/shop/files/nitro-vg240y-widescreen-gaming-led-monitor-gigahertz-gigahertz-883566_1024x.jpg?v=1726732932', brand:'' },
-    { name:'MSI G2712 27"',          spec:'27" · 1920x1080 FHD · IPS · 170Hz · FreeSync Premium · HDMI+DP · G-Sync compat.',                    price:9500,  img:'https://m.media-amazon.com/images/I/51Fb7y4wa8L._AC_UF894,1000_QL80_.jpg', brand:'' },
-    { name:'LG 32MP60G-B 31.5"',    spec:'31.5" · 1920x1080 FHD · IPS · 75Hz · FreeSync · HDMI+DP · Large productivity screen',                 price:11000, img:'https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/0d428a03-24ce-41f2-aa30-f5763bd39eaa/md08000262-large01-jpg', brand:'' },
-    { name:'MSI G321Q 31.5"',        spec:'31.5" · 2560x1440 QHD · IPS · 165Hz · FreeSync · HDMI+2x DP',                                        price:15000, img:'https://netcodex.ph/wp-content/uploads/2024/08/MSI-G321Q.png.webp', brand:'' },
+  monitor:[
+    {name:'Acer K202HQL 19.5"',spec:'19.5" · 1366x768 · TN · 60Hz · VGA+HDMI · Slim bezel · Office / basic use',price:3500,img:'https://fastlink.ph/cdn/shop/products/AcerK202HQLAbi_1.png?v=1628065991',brand:''},
+    {name:'Philips 221V8 21.5"',spec:'21.5" · 1920x1080 FHD · VA · 75Hz · HDMI · Ultra-slim · Eye protection · Flicker-free',price:4500,img:'https://images.philips.com/is/image/philipsconsumer/a03c6f52723045f29e30b01b00c223e9?$pnglarge$&wid=700&hei=700',brand:''},
+    {name:'LG 24MK430H-B 23.8"',spec:'23.8" · 1920x1080 FHD · IPS · 75Hz · AMD FreeSync · HDMI+VGA · Thin bezel',price:5500,img:'https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/0631f9c0-0b90-4f01-bc55-8a2fded9a3f8/md05919436-MK430H-Z1-jpg',brand:''},
+    {name:'Acer Nitro VG240Y 23.8"',spec:'23.8" · 1920x1080 FHD · IPS · 144Hz · AMD FreeSync · HDMI+DP · Gaming monitor',price:7000,img:'https://www.gigahertz.com.ph/cdn/shop/files/nitro-vg240y-widescreen-gaming-led-monitor-gigahertz-gigahertz-883566_1024x.jpg?v=1726732932',brand:''},
+    {name:'MSI G2712 27"',spec:'27" · 1920x1080 FHD · IPS · 170Hz · FreeSync Premium · HDMI+DP · G-Sync compat.',price:9500,img:'https://m.media-amazon.com/images/I/51Fb7y4wa8L._AC_UF894,1000_QL80_.jpg',brand:''},
+    {name:'LG 32MP60G-B 31.5"',spec:'31.5" · 1920x1080 FHD · IPS · 75Hz · FreeSync · HDMI+DP · Large productivity screen',price:11000,img:'https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/0d428a03-24ce-41f2-aa30-f5763bd39eaa/md08000262-large01-jpg',brand:''},
+    {name:'MSI G321Q 31.5"',spec:'31.5" · 2560x1440 QHD · IPS · 165Hz · FreeSync · HDMI+2x DP',price:15000,img:'https://netcodex.ph/wp-content/uploads/2024/08/MSI-G321Q.png.webp',brand:''},
   ],
-  keyboard: [
-    { name:'Meetion MT-K9200',      spec:'Full-size · Membrane · Wired USB · Spill-resistant · Budget office',                                  price:350,  img:'https://moreshopping.com/cdn/shop/files/Meetion_MT-K200_USB_Wired_Keyboard_-_Black_1_1024x.jpg?v=1753689927', brand:'' },
-    { name:'Redragon K552 Kumara',  spec:'TKL 87-key · Mechanical · RGB · Metal top plate · Gaming',                                            price:1200, img:'https://ph-test-11.slatic.net/p/5b324c3da6e8c4b0bf7555605dd7db74.jpg', brand:'' },
-    { name:'Rexus MX5.2 TKL',      spec:'TKL · Mechanical · RGB · PBT keycaps · Wired USB',                                                     price:1800, img:'https://rexus.id/cdn/shop/files/MX_5.2_3_a4cdeaf0-23b0-4d8d-ae04-93c084a5911c.png?v=1747280034', brand:'' },
-    { name:'Tecware Phantom Elite', spec:'Full-size · Mechanical · Per-key RGB · Aluminum frame',                                               price:2200, img:'https://static.wixstatic.com/media/8517ed_f651ee46d3ae4788ad22aec0ed6bb233~mv2.png/v1/fill/w_1148,h_948,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8517ed_f651ee46d3ae4788ad22aec0ed6bb233~mv2.png', brand:'' },
-    { name:'Logitech K845',         spec:'Full-size · Mechanical (Blue/Red/Brown) · White backlight · USB',                                     price:3500, img:'https://www.logitech.com/content/dam/logitech/en/products/keyboards/k845/gallery/k845-gallery-1-new.png', brand:'' },
-    { name:'HyperX Alloy Origins',  spec:'Full-size · HyperX mechanical · Per-key RGB · Aircraft-grade aluminum',                               price:4500, img:'https://hp.widen.net/content/xjs5mhamsl/webp/xjs5mhamsl.png?w=573&h=430&dpi=72&color=ffffff00', brand:'' },
-    { name:'Razer BlackWidow V3',   spec:'Full-size · Razer mechanical · Chroma RGB · USB · Media keys',                                        price:5500, img:'https://i5.walmartimages.com/seo/Razer-BlackWidow-V3-Full-Size-Mechanical-Gaming-Keyboard-for-PC-Chroma-RGB-Wrist-Rest-Black_79faa0ce-40a0-4819-8021-cda364393f31.f815e32550b1449818d7556f0ea2dc14.jpeg', brand:'' },
+  keyboard:[
+    {name:'Meetion MT-K9200',spec:'Full-size · Membrane · Wired USB · Spill-resistant · Budget office',price:350,img:'https://moreshopping.com/cdn/shop/files/Meetion_MT-K200_USB_Wired_Keyboard_-_Black_1_1024x.jpg?v=1753689927',brand:''},
+    {name:'Redragon K552 Kumara',spec:'TKL 87-key · Mechanical · RGB · Metal top plate · Gaming',price:1200,img:'https://ph-test-11.slatic.net/p/5b324c3da6e8c4b0bf7555605dd7db74.jpg',brand:''},
+    {name:'Rexus MX5.2 TKL',spec:'TKL · Mechanical · RGB · PBT keycaps · Wired USB',price:1800,img:'https://rexus.id/cdn/shop/files/MX_5.2_3_a4cdeaf0-23b0-4d8d-ae04-93c084a5911c.png?v=1747280034',brand:''},
+    {name:'Tecware Phantom Elite',spec:'Full-size · Mechanical · Per-key RGB · Aluminum frame',price:2200,img:'https://static.wixstatic.com/media/8517ed_f651ee46d3ae4788ad22aec0ed6bb233~mv2.png/v1/fill/w_1148,h_948,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/8517ed_f651ee46d3ae4788ad22aec0ed6bb233~mv2.png',brand:''},
+    {name:'Logitech K845',spec:'Full-size · Mechanical (Blue/Red/Brown) · White backlight · USB',price:3500,img:'https://www.logitech.com/content/dam/logitech/en/products/keyboards/k845/gallery/k845-gallery-1-new.png',brand:''},
+    {name:'HyperX Alloy Origins',spec:'Full-size · HyperX mechanical · Per-key RGB · Aircraft-grade aluminum',price:4500,img:'https://hp.widen.net/content/xjs5mhamsl/webp/xjs5mhamsl.png?w=573&h=430&dpi=72&color=ffffff00',brand:''},
+    {name:'Razer BlackWidow V3',spec:'Full-size · Razer mechanical · Chroma RGB · USB · Media keys',price:5500,img:'https://i5.walmartimages.com/seo/Razer-BlackWidow-V3-Full-Size-Mechanical-Gaming-Keyboard-for-PC-Chroma-RGB-Wrist-Rest-Black_79faa0ce-40a0-4819-8021-cda364393f31.f815e32550b1449818d7556f0ea2dc14.jpeg',brand:''},
   ],
-  mouse: [
-    { name:'A4Tech OP-330',              spec:'Wired USB · 1600 DPI · Optical · Ambidextrous · Budget office',                                 price:280,  img:'https://www.a4tech.com/alanUpload/colorImg/img/202104/2702420966865430.jpg', brand:'' },
-    { name:'Meetion MT-M362',            spec:'Wired USB · 1600 DPI · 4 buttons · Optical · Ergonomic',                                        price:400,  img:'https://img.yfisher.com/1660528547931.png', brand:'' },
-    { name:'Redragon M711 Cobra',        spec:'Wired · 10,000 DPI · 7 programmable buttons · RGB',                                             price:900,  img:'https://gameone.ph/media/catalog/product/mpiowebpcache/d378a0f20f83637cdb1392af8dc032a2/2/_/2_9_84.webp', brand:'' },
-    { name:'Logitech G304 Lightspeed',   spec:'Wireless · 12,000 DPI HERO · 250hr battery · 99g · USB dongle',                                 price:2200, img:'https://wafuu.com/cdn/shop/files/logitech-g304-lightspeed-wireless-gaming-mouse-99g-hero-25k-6-buttons-white-111798.jpg?v=1722093170', brand:'' },
-    { name:'Razer DeathAdder V2',        spec:'Wired · 20,000 DPI Focus+ · 8 buttons · Chroma RGB · 82g',                                      price:2800, img:'https://m.media-amazon.com/images/I/41KiSTQ1ITL.jpg', brand:'' },
-    { name:'Logitech G502 HERO',         spec:'Wired · 25,600 DPI HERO · 11 buttons · RGB · Adjustable weight',                                price:3500, img:'https://d1rlzxa98cyc61.cloudfront.net/catalog/product/cache/1801c418208f9607a371e61f8d9184d9/1/7/172324_2020_1.jpg', brand:'' },
-    { name:'Razer Viper V2 Pro',         spec:'Wireless · 30,000 DPI Focus Pro · 5 buttons · 58g ultralight',                                  price:7000, img:'https://m.media-amazon.com/images/I/61PZvXc7UFL.jpg', brand:'' },
+  mouse:[
+    {name:'A4Tech OP-330',spec:'Wired USB · 1600 DPI · Optical · Ambidextrous · Budget office',price:280,img:'https://www.a4tech.com/alanUpload/colorImg/img/202104/2702420966865430.jpg',brand:''},
+    {name:'Meetion MT-M362',spec:'Wired USB · 1600 DPI · 4 buttons · Optical · Ergonomic',price:400,img:'https://img.yfisher.com/1660528547931.png',brand:''},
+    {name:'Redragon M711 Cobra',spec:'Wired · 10,000 DPI · 7 programmable buttons · RGB',price:900,img:'https://gameone.ph/media/catalog/product/mpiowebpcache/d378a0f20f83637cdb1392af8dc032a2/2/_/2_9_84.webp',brand:''},
+    {name:'Logitech G304 Lightspeed',spec:'Wireless · 12,000 DPI HERO · 250hr battery · 99g · USB dongle',price:2200,img:'https://wafuu.com/cdn/shop/files/logitech-g304-lightspeed-wireless-gaming-mouse-99g-hero-25k-6-buttons-white-111798.jpg?v=1722093170',brand:''},
+    {name:'Razer DeathAdder V2',spec:'Wired · 20,000 DPI Focus+ · 8 buttons · Chroma RGB · 82g',price:2800,img:'https://m.media-amazon.com/images/I/41KiSTQ1ITL.jpg',brand:''},
+    {name:'Logitech G502 HERO',spec:'Wired · 25,600 DPI HERO · 11 buttons · RGB · Adjustable weight',price:3500,img:'https://d1rlzxa98cyc61.cloudfront.net/catalog/product/cache/1801c418208f9607a371e61f8d9184d9/1/7/172324_2020_1.jpg',brand:''},
+    {name:'Razer Viper V2 Pro',spec:'Wireless · 30,000 DPI Focus Pro · 5 buttons · 58g ultralight',price:7000,img:'https://m.media-amazon.com/images/I/61PZvXc7UFL.jpg',brand:''},
   ],
-  webcam: [
-    { name:'A4Tech PK-910H',       spec:'1080p · 30fps · Built-in mic · USB 2.0 · Auto exposure · Budget WFH',                                 price:800,  img:'https://www.a4tech.com/alanUpload/colorImg/img/201711/2908493191354085.jpg', brand:'' },
-    { name:'Genius WideCam F100',  spec:'1080p · 30fps · 120° wide FOV · Built-in mic · USB',                                                  price:1500, img:'https://m.media-amazon.com/images/I/41CR0esaZ+L.jpg', brand:'' },
-    { name:'Razer Kiyo X',         spec:'1080p/30fps · 720p/60fps · 82° FOV · Auto focus · Built-in mic',                                      price:2800, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0810056145637_800x.jpg?v=1740637358', brand:'' },
-    { name:'Razer Kiyo (Original)',spec:'1080p/30fps · Built-in ring light · Adjustable brightness · Dark room',                               price:4500, img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0814855025039_800x.jpg?v=1739863952', brand:'' },
-    { name:'Logitech C920e',       spec:'1080p/30fps · 78° FOV · Dual stereo mics · Privacy shutter · Business',                              price:5500, img:'https://www.sauditk.com/wp-content/uploads/2023/03/Logitech-C920e-3.webp', brand:'' },
-    { name:'Razer Kiyo Pro',       spec:'1080p/60fps uncompressed · HDR · Sony STARVIS CMOS · Premium stream',                                 price:8500, img:'https://hubecomputer.com/cdn/shop/files/camera_800x_99827185-dc59-4155-a706-059aa56f563a.webp?v=1705041457', brand:'' },
-    { name:'Logitech Brio 4K',     spec:'4K/30fps · 1080p/60fps · 5× zoom · HDR · Windows Hello · USB-C',                                     price:12000,img:'https://resource.logitech.com/content/dam/logitech/en/products/webcams/brio/gallery/brio-gallery-1.png', brand:'' },
+  webcam:[
+    {name:'A4Tech PK-910H',spec:'1080p · 30fps · Built-in mic · USB 2.0 · Auto exposure · Budget WFH',price:800,img:'https://www.a4tech.com/alanUpload/colorImg/img/201711/2908493191354085.jpg',brand:''},
+    {name:'Genius WideCam F100',spec:'1080p · 30fps · 120° wide FOV · Built-in mic · USB',price:1500,img:'https://m.media-amazon.com/images/I/41CR0esaZ+L.jpg',brand:''},
+    {name:'Razer Kiyo X',spec:'1080p/30fps · 720p/60fps · 82° FOV · Auto focus · Built-in mic',price:2800,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0810056145637_800x.jpg?v=1740637358',brand:''},
+    {name:'Razer Kiyo (Original)',spec:'1080p/30fps · Built-in ring light · Adjustable brightness · Dark room',price:4500,img:'https://ecommerce.datablitz.com.ph/cdn/shop/files/0814855025039_800x.jpg?v=1739863952',brand:''},
+    {name:'Logitech C920e',spec:'1080p/30fps · 78° FOV · Dual stereo mics · Privacy shutter · Business',price:5500,img:'https://www.sauditk.com/wp-content/uploads/2023/03/Logitech-C920e-3.webp',brand:''},
+    {name:'Razer Kiyo Pro',spec:'1080p/60fps uncompressed · HDR · Sony STARVIS CMOS · Premium stream',price:8500,img:'https://hubecomputer.com/cdn/shop/files/camera_800x_99827185-dc59-4155-a706-059aa56f563a.webp?v=1705041457',brand:''},
+    {name:'Logitech Brio 4K',spec:'4K/30fps · 1080p/60fps · 5× zoom · HDR · Windows Hello · USB-C',price:12000,img:'https://resource.logitech.com/content/dam/logitech/en/products/webcams/brio/gallery/brio-gallery-1.png',brand:''},
   ],
 };
 
 const categoryLabels = {
-  cpu:'Processor (CPU)', ram:'Memory (RAM)', gpu:'GPU (Graphics Card)',
-  case:'Case', mb:'Motherboard', storage:'Storage (SSD)',
-  psu:'Power Supply (PSU)', cooler:'CPU Cooler', monitor:'Monitor',
-  keyboard:'Keyboard', mouse:'Mouse', webcam:'Webcam'
+  cpu:'Processor (CPU)',ram:'Memory (RAM)',gpu:'GPU (Graphics Card)',
+  case:'Case',mb:'Motherboard',storage:'Storage (SSD)',
+  psu:'Power Supply (PSU)',cooler:'CPU Cooler',monitor:'Monitor',
+  keyboard:'Keyboard',mouse:'Mouse',webcam:'Webcam'
 };
 
-/* ════════════════════════════════
-   BUILD PRICES & NAMES
-   ════════════════════════════════ */
-const buildPrices = {
-  entry: 17580,
-  mid:   41000,
-  high:  64500,
-};
-const buildNames = {
-  entry: 'Entry Level Build',
-  mid:   'Mid Range Build',
-  high:  'High End Build',
-  cart:  'Cart Checkout',
-};
+const buildPrices = { entry:17580, mid:41000, high:64500 };
+const buildNames  = { entry:'Entry Level Build', mid:'Mid Range Build', high:'High End Build', cart:'Cart Checkout' };
 
-/* ════════════════════════════════
-   MODAL — FULLY WORKING
-   ════════════════════════════════ */
+/* ════ MOBILE NAV ════ */
+function toggleMobileNav() {
+  const menu = document.getElementById('nav-menu');
+  const btn  = document.getElementById('hamburger');
+  menu.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('mobile-open') ? 'hidden' : '';
+}
+function closeMobileNav() {
+  document.getElementById('nav-menu').classList.remove('mobile-open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ════ MODAL ════ */
 function openModal(type) {
   const modal = document.getElementById('payment-modal');
-
-  // Title
-  document.getElementById('modal-title').textContent =
-    (type === 'cart' ? 'Cart' : buildNames[type] || 'Your Order') + ' — Place Order';
-
-  // Sub
-  document.getElementById('modal-sub').textContent =
-    'Choose your preferred payment method and fill in your details.';
-
-  // Price display
-  let price = 0;
-  if (type === 'cart') {
-    price = cart.reduce((s, c) => s + c.price * c.qty, 0);
-  } else {
-    price = buildPrices[type] || 0;
-  }
-  const priceStr = '₱' + price.toLocaleString();
-  document.getElementById('modal-price-display').textContent = priceStr;
-  document.getElementById('modal-build-label').textContent =
-    type === 'cart' ? 'Cart Total' : (buildNames[type] || 'Package');
-
-  // Reset to GCash tab
+  document.getElementById('modal-title').textContent = (type === 'cart' ? 'Cart' : buildNames[type] || 'Your Order') + ' — Place Order';
+  document.getElementById('modal-sub').textContent = 'Choose your preferred payment method and fill in your details.';
+  let price = type === 'cart' ? cart.reduce((s,c) => s + c.price * c.qty, 0) : (buildPrices[type] || 0);
+  document.getElementById('modal-price-display').textContent = '₱' + price.toLocaleString();
+  document.getElementById('modal-build-label').textContent = type === 'cart' ? 'Cart Total' : (buildNames[type] || 'Package');
   switchPayTab('gcash');
-
-  // Show modal
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
   document.getElementById('payment-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
-
-// Click backdrop to close
 document.getElementById('payment-modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-
-// Tab switching
 function switchPayTab(method) {
-  document.querySelectorAll('#modal-pay-tabs .pay-tab').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.method === method);
-  });
-  document.querySelectorAll('.pay-form').forEach(form => {
-    form.classList.toggle('active', form.id === 'pay-' + method);
-  });
+  document.querySelectorAll('#modal-pay-tabs .pay-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.method === method));
+  document.querySelectorAll('.pay-form').forEach(form => form.classList.toggle('active', form.id === 'pay-' + method));
 }
-
 document.getElementById('modal-pay-tabs').addEventListener('click', function(e) {
   const btn = e.target.closest('.pay-tab');
   if (btn && btn.dataset.method) switchPayTab(btn.dataset.method);
 });
-
 function confirmOrder(method) {
   closeModal();
   showToast('✅ Order placed via ' + method + '! We\'ll contact you within 30 minutes.');
 }
-
 function selectBank(el, bank) {
   document.querySelectorAll('.bank-option').forEach(b => b.classList.remove('sel'));
   el.classList.add('sel');
   document.getElementById('bank-selected').value = bank;
 }
 
-/* ════════════════════════════════
-   TOAST
-   ════════════════════════════════ */
+/* ════ TOAST ════ */
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1404,89 +1431,59 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
 
-/* ════════════════════════════════
-   SECTION NAVIGATION
-   ════════════════════════════════ */
+/* ════ SECTIONS ════ */
 function showSection(id, el) {
   document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  if (el) {
-    el.classList.add('active');
-  } else {
-    const map = { home:'nav-home', components:'nav-components', contact:'nav-contact', about:'nav-about' };
-    const navEl = document.getElementById(map[id]);
-    if (navEl) navEl.classList.add('active');
-  }
-  window.scrollTo(0, 0);
+  if (el) { el.classList.add('active'); }
+  else { const map={home:'nav-home',components:'nav-components',contact:'nav-contact',about:'nav-about'}; const navEl=document.getElementById(map[id]); if(navEl) navEl.classList.add('active'); }
+  window.scrollTo(0,0);
   if (id === 'components') renderComponents();
 }
-
 function scrollToBuilds() {
   document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
   document.getElementById('home').classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById('nav-home').classList.add('active');
-  setTimeout(() => {
-    document.getElementById('find-your-build').scrollIntoView({ behavior:'smooth' });
-  }, 50);
+  setTimeout(() => document.getElementById('find-your-build').scrollIntoView({behavior:'smooth'}), 50);
 }
-
 function scrollToPkg(anchorId) {
   document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
   document.getElementById('home').classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById('nav-home').classList.add('active');
-  setTimeout(() => {
-    const el = document.getElementById(anchorId);
-    if (el) el.scrollIntoView({ behavior:'smooth' });
-  }, 50);
+  setTimeout(() => { const el=document.getElementById(anchorId); if(el) el.scrollIntoView({behavior:'smooth'}); }, 50);
 }
 
-/* ════════════════════════════════
-   BRAND CHIP
-   ════════════════════════════════ */
+/* ════ BRAND CHIP ════ */
 function brandChip(brand) {
   if (!brand) return '';
-  const map = { amd:'brand-amd', intel:'brand-intel', nvidia:'brand-nvidia' };
-  const label = brand === 'nvidia' ? 'NVIDIA' : brand.toUpperCase();
-  return '<span class="brand-chip ' + map[brand] + '">' + label + '</span>';
+  const map={amd:'brand-amd',intel:'brand-intel',nvidia:'brand-nvidia'};
+  const label = brand==='nvidia'?'NVIDIA':brand.toUpperCase();
+  return '<span class="brand-chip '+map[brand]+'">'+label+'</span>';
 }
 
-/* ════════════════════════════════
-   RENDER COMPONENTS
-   ════════════════════════════════ */
+/* ════ RENDER COMPONENTS ════ */
 let currentFilter = 'all';
-
 function renderComponents(filter) {
   filter = filter || currentFilter;
   const container = document.getElementById('comp-content');
   const cats = filter === 'all' ? Object.keys(products) : [filter];
   let html = '';
   cats.forEach(cat => {
-    html += '<div class="comp-category-block">'
-          + '<h3 class="comp-section-title">' + categoryLabels[cat] + '</h3>'
-          + '<div class="products-grid">';
-    products[cat].forEach((p, i) => {
-      html += '<div class="product-card">'
-            + '<div class="product-img-box">'
-            + '<img src="' + p.img + '" alt="' + p.name + '">'
-            + brandChip(p.brand)
-            + '</div>'
-            + '<div class="product-info">'
-            + '<p class="product-name">' + p.name + '</p>'
-            + '<p class="product-spec">' + p.spec + '</p>'
-            + '<p class="product-price">₱' + p.price.toLocaleString() + '</p>'
-            + '<div class="product-actions">'
-            + '<button class="add-cart-btn" onclick="addToCart(\'' + cat + '\',' + i + ')">+ Cart</button>'
-            + '<button class="buy-now-btn"  onclick="buyNow(\'' + cat + '\',' + i + ')">Buy Now</button>'
-            + '</div></div></div>';
+    html += '<div class="comp-category-block"><h3 class="comp-section-title">'+categoryLabels[cat]+'</h3><div class="products-grid">';
+    products[cat].forEach((p,i) => {
+      html += '<div class="product-card"><div class="product-img-box"><img src="'+p.img+'" alt="'+p.name+'" loading="lazy">'+brandChip(p.brand)+'</div>'
+            + '<div class="product-info"><p class="product-name">'+p.name+'</p><p class="product-spec">'+p.spec+'</p>'
+            + '<p class="product-price">₱'+p.price.toLocaleString()+'</p>'
+            + '<div class="product-actions"><button class="add-cart-btn" onclick="addToCart(\''+cat+'\','+i+')">+ Cart</button>'
+            + '<button class="buy-now-btn" onclick="buyNow(\''+cat+'\','+i+')">Buy Now</button></div></div></div>';
     });
     html += '</div></div>';
   });
   container.innerHTML = html;
 }
-
 function filterComp(cat, el) {
   currentFilter = cat;
   document.querySelectorAll('.comp-tab').forEach(t => t.classList.remove('active'));
@@ -1494,32 +1491,26 @@ function filterComp(cat, el) {
   renderComponents(cat);
 }
 
-/* ════════════════════════════════
-   CART
-   ════════════════════════════════ */
+/* ════ CART ════ */
 let cart = [];
-
 function addToCart(cat, idx) {
   const p = products[cat][idx];
-  const existing = cart.find(c => c.cat === cat && c.idx === idx);
-  if (existing) { existing.qty++; } else { cart.push({ ...p, cat, idx, qty:1 }); }
+  const existing = cart.find(c => c.cat===cat && c.idx===idx);
+  if (existing) { existing.qty++; } else { cart.push({...p,cat,idx,qty:1}); }
   updateCartBadge();
   const badge = document.getElementById('cart-count');
   badge.style.transform = 'scale(1.4)';
   setTimeout(() => badge.style.transform = '', 220);
-  showToast('Added to cart: ' + p.name);
+  showToast('Added to cart: '+p.name);
 }
-
 function buyNow(cat, idx) {
   addToCart(cat, idx);
   const sidebar = document.getElementById('cart-sidebar');
   if (sidebar.style.right !== '0px') toggleCart();
 }
-
 function updateCartBadge() {
-  document.getElementById('cart-count').textContent = cart.reduce((s,c) => s+c.qty, 0);
+  document.getElementById('cart-count').textContent = cart.reduce((s,c)=>s+c.qty,0);
 }
-
 function toggleCart() {
   const sidebar  = document.getElementById('cart-sidebar');
   const overlay  = document.getElementById('cart-overlay');
@@ -1528,54 +1519,41 @@ function toggleCart() {
   overlay.style.display = isOpen ? 'none' : 'block';
   if (!isOpen) renderCart();
 }
-
 function renderCart() {
   const container = document.getElementById('cart-items');
   const footer    = document.getElementById('cart-footer');
   if (!cart.length) {
     container.innerHTML = '<p style="color:var(--sw-muted);font-size:13px;text-align:center;padding:40px 0;">No items yet.<br>Add parts from the Components page.</p>';
-    footer.style.display = 'none';
-    return;
+    footer.style.display='none'; return;
   }
-  let total = 0, html = '';
-  cart.forEach((item, i) => {
+  let total=0, html='';
+  cart.forEach((item,i)=>{
     total += item.price * item.qty;
-    html += '<div class="cart-item">'
-          + '<div class="cart-item-img"><img src="' + item.img + '" alt="' + item.name + '"></div>'
-          + '<div style="flex:1;min-width:0;">'
-          + '<p class="cart-item-name">' + item.name + '</p>'
-          + '<p class="cart-item-price">₱' + (item.price * item.qty).toLocaleString() + '</p>'
-          + '</div>'
-          + '<div class="qty-controls">'
-          + '<button class="qty-btn" onclick="changeQty(' + i + ',-1)">−</button>'
-          + '<span class="qty-val">' + item.qty + '</span>'
-          + '<button class="qty-btn" onclick="changeQty(' + i + ',1)">+</button>'
-          + '</div></div>';
+    html += '<div class="cart-item"><div class="cart-item-img"><img src="'+item.img+'" alt="'+item.name+'" loading="lazy"></div>'
+          + '<div style="flex:1;min-width:0;"><p class="cart-item-name">'+item.name+'</p><p class="cart-item-price">₱'+(item.price*item.qty).toLocaleString()+'</p></div>'
+          + '<div class="qty-controls"><button class="qty-btn" onclick="changeQty('+i+',-1)">−</button>'
+          + '<span class="qty-val">'+item.qty+'</span>'
+          + '<button class="qty-btn" onclick="changeQty('+i+',1)">+</button></div></div>';
   });
   container.innerHTML = html;
-  document.getElementById('cart-total').textContent = '₱' + total.toLocaleString();
+  document.getElementById('cart-total').textContent = '₱'+total.toLocaleString();
   footer.style.display = 'block';
 }
-
 function changeQty(i, delta) {
   cart[i].qty += delta;
-  if (cart[i].qty <= 0) cart.splice(i, 1);
-  updateCartBadge();
-  renderCart();
+  if (cart[i].qty <= 0) cart.splice(i,1);
+  updateCartBadge(); renderCart();
 }
+function clearCart() { cart=[]; updateCartBadge(); renderCart(); }
 
-function clearCart() {
-  cart = [];
-  updateCartBadge();
-  renderCart();
-}
-
-/* ════════════════════════════════
-   NAV SCROLL SHADOW
-   ════════════════════════════════ */
+/* ════ NAV SCROLL ════ */
 window.addEventListener('scroll', () => {
   document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
 });
+
+/* ════ MOBILE CART FIX ════ */
+// On mobile the cart sidebar uses 100% width, fix right value detection
+const origToggleCart = toggleCart;
 
 renderComponents();
 </script>
