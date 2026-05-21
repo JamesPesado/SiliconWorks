@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silicon Works – Built For Performance</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#" onclick="showSection('home'); return false;">
+    <div class="nav-logo-box"><span>SW</span></div>
+    <div class="nav-brand">SILICON<br><small>WORKS</small></div>
+  </a>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="#" class="active" id="nav-home"       onclick="showSection('home',this); closeMobileNav(); return false;">Home</a></li>
+    <li><a href="#" id="nav-components"                onclick="showSection('components',this); closeMobileNav(); return false;">Components</a></li>
+    <li><a href="#" id="nav-contact"                   onclick="showSection('contact',this); closeMobileNav(); return false;">Contact</a></li>
+    <li><a href="#" id="nav-about"                     onclick="showSection('about',this); closeMobileNav(); return false;">About</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div id="home-hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-container">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Now Available — Shipping all over the Philippines 🚀</div>
+        <h1 class="hero-title">Built<br>For <em>Performance</em></h1>
+        <p class="hero-sub">Custom PCs designed for gaming, school, and office use. Reliable, affordable, and tailored to your needs. Based in Carmona, Cavite.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" href="#" onclick="showSection('components', document.getElementById('nav-components')); return false;">Shop Now</a>
+          <a class="btn-outline" href="#" onclick="scrollToBuilds(); return false;">Custom Build</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">3+</div><div class="hero-stat-label">Packages</div></div>
+          <div><div class="hero-stat-val">84+</div><div class="hero-stat-label">Components</div></div>
+          <div><div class="hero-stat-val">4</div><div class="hero-stat-label">Pay Methods</div></div>
+        </div>
+      </div>
+      <div class="hero-pc-wrapper">
+        <div class="hero-pc">
+          <div class="pc-body">
+            <div class="rgb-strip top"></div>
+            <div class="pc-glass"></div>
+            <div class="pc-fan pc-fan-1"><div class="fan-ring"></div><div class="fan-center"></div></div>
+            <div class="pc-fan pc-fan-2"><div class="fan-ring" style="animation-direction:reverse"></div><div class="fan-center"></div></div>
+            <div class="pc-mb"></div>
+            <div class="pc-glow-inner"></div>
+            <div class="rgb-strip bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="find-your-build" class="builds-gradient" style="scroll-margin-top:80px;">
+    <div style="text-align:center;margin-bottom:10px;"><p class="section-eyebrow">Pre-Built PC Packages</p></div>
+    <h2 class="section-title purple" style="text-align:center;font-size:clamp(40px,8vw,88px);margin-bottom:18px;">FIND YOUR BUILD</h2>
+    <p class="section-desc" style="text-align:center;margin:0 auto 52px;">Thoughtfully designed packages for gaming, education, and office work — balanced performance across every budget range.</p>
+    <div class="builds-grid">
+      <div class="build-card">
+        <div class="build-pc-img"><div class="mini-pc"><div class="mini-fan"><div class="mini-fan-ring"></div><div class="mini-fan-center"></div></div><div style="position:absolute;bottom:10px;left:8px;right:8px;height:56px;background:#18083a;border-radius:4px;border:1px solid #3a2080;"></div></div></div>
+        <p class="build-label">Entry Level</p>
+        <p class="build-price">₱17,580</p>
+        <div class="build-btns">
+          <button class="build-btn" onclick="scrollToPkg('pkg-entry')">View Specs</button>
+          <button class="build-order-btn" onclick="openModal('entry')">Order Now</button>
+        </div>
+      </div>
+      <div class="build-card" style="transform:scale(1.04);">
+        <div class="popular-badge">POPULAR</div>
+        <div class="build-pc-img"><div class="mini-pc"><div class="mini-fan"><div class="mini-fan-ring" style="animation-duration:1.5s"></div><div class="mini-fan-center"></div></div><div class="mini-fan" style="top:66px;"><div class="mini-fan-ring" style="animation-direction:reverse;animation-duration:1.8s"></div><div class="mini-fan-center"></div></div><div style="position:absolute;bottom:10px;left:8px;right:8px;height:56px;background:#18083a;border-radius:4px;border:1px solid #3a2080;"></div></div></div>
+        <p class="build-label">Mid Range</p>
+        <p class="build-price">₱41,000</p>
+        <div class="build-btns">
+          <button class="build-btn" onclick="scrollToPkg('pkg-mid')">View Specs</button>
+          <button class="build-order-btn" onclick="openModal('mid')">Order Now</button>
+        </div>
+      </div>
+      <div class="build-card">
+        <div class="build-pc-img"><div class="mini-pc"><div class="mini-fan"><div class="mini-fan-ring" style="animation-duration:1s"></div><div class="mini-fan-center"></div></div><div class="mini-fan" style="top:66px;"><div class="mini-fan-ring" style="animation-direction:reverse;animation-duration:1.2s"></div><div class="mini-fan-center"></div></div><div class="mini-fan" style="top:112px;"><div class="mini-fan-ring" style="animation-duration:0.9s"></div><div class="mini-fan-center"></div></div><div style="position:absolute;bottom:10px;left:8px;right:8px;height:56px;background:#18083a;border-radius:4px;border:1px solid #3a2080;"></div></div></div>
+        <p class="build-label">High End</p>
+        <p class="build-price">₱64,500</p>
+        <div class="build-btns">
+          <button class="build-btn" onclick="scrollToPkg('pkg-high')">View Specs</button>
+          <button class="build-order-btn" onclick="openModal('high')">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="packages-section" style="padding:80px 48px;background:var(--sw-bg);">
+    <p class="section-eyebrow">Complete System Packages</p>
+    <h2 id="pkg-entry" class="pkg-section-heading">Entry Build</h2>
+    <div class="package-card entry">
+      <div class="package-pc"><div style="width:110px;height:150px;background:linear-gradient(180deg,#18083a,#0c0620);border-radius:8px;border:1px solid #3a2080;position:relative;overflow:hidden;"><div style="position:absolute;width:34px;height:34px;background:#0c0620;border-radius:50%;border:1px solid #3a2080;top:16px;left:50%;transform:translateX(-50%);"><div style="position:absolute;inset:4px;border-radius:50%;background:conic-gradient(#6C3FE8,#C06FFF,#6C3FE8);animation:spin 2s linear infinite;"></div><div style="position:absolute;inset:10px;border-radius:50%;background:#0c0620;"></div></div><div style="position:absolute;bottom:8px;left:6px;right:6px;height:48px;background:#18083a;border-radius:4px;border:1px solid #3a2080;"></div></div></div>
+      <div style="flex:1;">
+        <p class="package-header-label">This build is perfect for students, office work, online classes, and everyday use.</p>
+        <p class="package-price">₱17,580</p>
+        <p class="specs-label">Specs</p>
+        <div class="specs-list"><ul>
+          <li>Processor: AMD Ryzen 5 5600G</li><li>Motherboard: ASUS Prime A520M-K</li>
+          <li>RAM: Kingston Fury Beast 8GB DDR4-3200</li><li>Storage: Kingston NV2 500GB NVMe SSD</li>
+          <li>PSU: MSI MAG A550BN 550W 80+ Bronze</li><li>Case: Tecware Nexus M</li>
+          <li>CPU Cooler: Wraith Stealth (bundled)</li><li>Keyboard: Meetion MT-K9200</li>
+          <li>Mouse: A4Tech OP-330</li><li>Monitor: Acer K202HQL 19.5"</li>
+          <li>Webcam: A4Tech PK-910H</li>
+        </ul></div>
+        <div class="payment-methods">
+          <span class="pay-badge"><span class="dot gcash"></span>GCash</span>
+          <span class="pay-badge"><span class="dot maya"></span>PayMaya</span>
+          <span class="pay-badge"><span class="dot bank"></span>Bank Transfer</span>
+          <span class="pay-badge"><span class="dot cod"></span>COD</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="pkg-mid" class="pkg-section-heading">Mid Range Build</h2>
+    <div class="package-card mid">
+      <div class="package-pc"><div style="width:110px;height:150px;background:linear-gradient(180deg,#18083a,#0c0620);border-radius:8px;border:1px solid #3a2080;position:relative;overflow:hidden;"><div style="position:absolute;width:34px;height:34px;background:#0c0620;border-radius:50%;border:1px solid #3a2080;top:12px;left:50%;transform:translateX(-50%);"><div style="position:absolute;inset:4px;border-radius:50%;background:conic-gradient(#6C3FE8,#C06FFF,#6C3FE8);animation:spin 1.5s linear infinite;"></div><div style="position:absolute;inset:10px;border-radius:50%;background:#0c0620;"></div></div><div style="position:absolute;width:34px;height:34px;background:#0c0620;border-radius:50%;border:1px solid #3a2080;top:54px;left:50%;transform:translateX(-50%);"><div style="position:absolute;inset:4px;border-radius:50%;background:conic-gradient(#C06FFF,#6C3FE8,#C06FFF);animation:spin 1.8s linear infinite reverse;"></div><div style="position:absolute;inset:10px;border-radius:50%;background:#0c0620;"></div></div><div style="position:absolute;bottom:8px;left:6px;right:6px;height:48px;background:#18083a;border-radius:4px;border:1px solid #3a2080;"></div></div></div>
+      <div style="flex:1;">
+        <p class="package-header-label">This build is ideal for users who want both work and gaming performance.</p>
+        <p class="package-price">₱41,000</p>
+        <p class="specs-label">Specs</p>
+        <div class="specs-list"><ul>
+          <li>Processor: AMD Ryzen 5 5600</li><li>Motherboard: ASUS TUF Gaming B550M-Plus</li>
+          <li>RAM: Kingston Fury Beast 16GB (2×8GB) DDR4-3200</li><li>Storage: Kingston NV2 1TB NVMe SSD</li>
+          <li>GPU: AMD Radeon RX 6600 8GB GDDR6</li><li>PSU: Sama G650 650W 80+ Gold</li>
+          <li>Case: DeepCool CC560 ATX</li><li>CPU Cooler: Thermalright Assassin X 120 SE</li>
+          <li>Keyboard: Redragon K552 Kumara</li><li>Mouse: Redragon M711 Cobra</li>
+          <li>Monitor: Acer Nitro VG240Y 23.8" 144Hz</li><li>Webcam: Razer Kiyo X 1080p</li>
+        </ul></div>
+        <div class="payment-methods">
+          <span class="pay-badge"><span class="dot gcash"></span>GCash</span>
+          <span class="pay-badge"><span class="dot maya"></span>PayMaya</span>
+          <span class="pay-badge"><span class="dot bank"></span>Bank Transfer</span>
+          <span class="pay-badge"><span class="dot cod"></span>COD</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="pkg-high" class="pkg-section-heading">High End Build</h2>
+    <div class="package-card high">
+      <div class="package-pc"><div style="width:110px;height:150px;background:linear-gradient(180deg,#18083a,#0c0620);border-radius:8px;border:1px solid #3a2080;position:relative;overflow:hidden;"><div style="position:absolute;width:34px;height:34px;background:#0c0620;border-radius:50%;border:1px solid #3a2080;top:8px;left:50%;transform:translateX(-50%);"><div style="position:absolute;inset:4px;border-radius:50%;background:conic-gradient(#6C3FE8,#C06FFF,#ff90e8,#6C3FE8);animation:spin 1s linear infinite;"></div><div style="position:absolute;inset:10px;border-radius:50%;background:#0c0620;"></div></div><div style="position:absolute;width:34px;height:34px;background:#0c0620;border-radius:50%;border:1px solid #3a2080;top:50px;left:50%;transform:translateX(-50%);"><div style="position:absolute;inset:4px;border-radius:50%;background:conic-gradient(#C06FFF,#ff90e8,#6C3FE8,#C06FFF);animation:spin 1.2s linear infinite reverse;"></div><div style="position:absolute;inset:10px;border-radius:50%;background:#0c0620;"></div></div><div style="position:absolute;width:34px;height:34px;background:#0c0620;border-radius:50%;border:1px solid #3a2080;top:92px;left:50%;transform:translateX(-50%);"><div style="position:absolute;inset:4px;border-radius:50%;background:conic-gradient(#ff90e8,#6C3FE8,#C06FFF,#ff90e8);animation:spin 0.9s linear infinite;"></div><div style="position:absolute;inset:10px;border-radius:50%;background:#0c0620;"></div></div><div style="position:absolute;bottom:8px;left:6px;right:6px;height:48px;background:#18083a;border-radius:4px;border:1px solid #3a2080;"></div></div></div>
+      <div style="flex:1;">
+        <p class="package-header-label">This high-performance build is made for serious gamers and content creators who need powerful speed and graphics.</p>
+        <p class="package-price">₱64,500</p>
+        <p class="specs-label">Specs</p>
+        <div class="specs-list"><ul>
+          <li>Processor: AMD Ryzen 5 5600G</li><li>Motherboard: ASUS Prime B650M-A WiFi</li>
+          <li>RAM: Lexar Thor 16GB (2×8GB) DDR5-6000</li><li>Storage: WD Black SN770 1TB NVMe PCIe 4.0</li>
+          <li>GPU: NVIDIA GeForce RTX 4060 8GB</li><li>PSU: DeepCool PQ650M 650W 80+ Gold Semi-mod</li>
+          <li>Case: Phanteks Eclipse G360A ATX</li><li>CPU Cooler: Thermalright Peerless Assassin 120 SE</li>
+          <li>Keyboard: Tecware Phantom Elite</li><li>Mouse: Razer DeathAdder V2</li>
+          <li>Monitor: MSI G2712 27" FHD 170Hz IPS</li><li>Webcam: Logitech C920e 1080p</li>
+        </ul></div>
+        <div class="payment-methods">
+          <span class="pay-badge"><span class="dot gcash"></span>GCash</span>
+          <span class="pay-badge"><span class="dot maya"></span>PayMaya</span>
+          <span class="pay-badge"><span class="dot bank"></span>Bank Transfer</span>
+          <span class="pay-badge"><span class="dot cod"></span>COD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="fw">SW SILICON WORKS</span>
+    <span>© 2025 SiliconWorks Philippines. All rights reserved. Carmona, Cavite.</span>
+    <span><a href="mailto:Siliconworkscarmona@gmail.com">Siliconworkscarmona@gmail.com</a></span>
+  </footer>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="comp-header" style="padding-top:80px;">
+    <p class="section-eyebrow">Browse &amp; Build</p>
+    <h2 class="section-title" style="margin-bottom:4px;">Component Parts</h2>
+  </div>
+  <div class="comp-tab-bar">
+    <div class="comp-nav-inner">
+      <button class="comp-tab canvas-tab active" onclick="showCanvasOrFilter('canvas',this)">🖥️ PC Canvas</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('all',this)">All Parts</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('cpu',this)">CPU</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('ram',this)">RAM</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('gpu',this)">GPU</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('case',this)">Case</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('mb',this)">Motherboard</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('storage',this)">Storage</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('psu',this)">PSU</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('cooler',this)">Cooler</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('monitor',this)">Monitor</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('keyboard',this)">Keyboard</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('mouse',this)">Mouse</button>
+      <button class="comp-tab" onclick="showCanvasOrFilter('webcam',this)">Webcam</button>
+      <div class="cart-badge-wrap">
+        <button class="cart-icon" onclick="toggleCart()">🛒</button>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
+    </div>
+  </div>
+  <div id="comp-content"></div>
+  <div id="pc-canvas-view" style="display:none;"></div>
+  <footer>
+    <span class="fw">SW SILICON WORKS</span>
+    <span>© 2025 SiliconWorks Philippines. All rights reserved.</span>
+    <span><a href="mailto:Siliconworkscarmona@gmail.com">Siliconworkscarmona@gmail.com</a></span>
+  </footer>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-eyebrow" style="text-align:center;">Get In Touch</p>
+    <h2 class="section-title" style="text-align:center;font-size:clamp(32px,5vw,52px);margin-bottom:8px;">Contact Us</h2>
+    <p style="text-align:center;font-size:13px;color:var(--sw-muted);margin-bottom:40px;">Questions about a build? Need help choosing? We're here for you.</p>
+    <div id="contact-form" class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="Juan"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="dela Cruz"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="juan@example.com"></div>
+      <div class="form-group"><label>Contact Number</label><input type="tel" name="phone" placeholder="+63 9XX XXX XXXX"></div>
+      <div class="form-group"><label>Message</label><textarea name="message" placeholder="Tell us about the PC build you're looking for..."></textarea></div>
+      <button type="button" class="submit-btn" onclick="submitContactForm()">Send Message</button>
+    </div>
+  </div>
+  <footer>
+    <span class="fw">SW SILICON WORKS</span>
+    <span>© 2025 SiliconWorks Philippines. All rights reserved.</span>
+    <span><a href="mailto:Siliconworkscarmona@gmail.com">Siliconworkscarmona@gmail.com</a></span>
+  </footer>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title" style="font-size:clamp(32px,5vw,56px);margin-bottom:24px;">About Silicon Works</h2>
+    <p class="about-intro">
+      <strong>Silicon Works</strong> started with one idea: great gaming PCs shouldn't cost a fortune. We build every unit ourselves, test it thoroughly, and ship it ready to play.<br><br>
+      Based in Carmona Cavite, we serve casual gamers, students, and office workers across the Philippines who want quality without overpaying.
+    </p>
+    <div class="about-cols">
+      <div class="about-col"><div class="about-col-icon">🖥️</div><p class="about-col-title">PC Canvas Tool</p><p>Our free compatibility checker lets you map out your ideal build — automatically verifying that every part works together before you spend a single peso.</p></div>
+      <div class="about-col"><div class="about-col-icon">💻</div><p class="about-col-title">PC Assembly</p><p>We source, build, and fully test your computer with quality components — assembled with consistent performance and compatibility checks before delivery.</p></div>
+      <div class="about-col"><div class="about-col-icon">🛡️</div><p class="about-col-title">After-Sales Support</p><p>Our relationship doesn't end at the sale. We provide comprehensive troubleshooting, warranty assistance, and repair services.</p></div>
+    </div>
+
+    <!-- ═══ SERVICES SECTION ═══ -->
+    <div class="services-section">
+      <p class="section-eyebrow">What We Offer</p>
+      <h3 class="section-title" style="font-size:clamp(26px,4vw,42px);margin-bottom:8px;">Our Services</h3>
+      <p style="font-size:13.5px;color:var(--sw-muted);line-height:1.7;margin-bottom:28px;max-width:560px;">From self-service tools to full custom builds — we have a service level that fits every need and budget.</p>
+
+      <div class="services-grid">
+
+        <!-- Basic -->
+        <div class="service-card service-basic">
+          <div class="service-badge">FREE</div>
+          <div class="service-icon-wrap">🖥️</div>
+          <p class="service-tier">Basic Service</p>
+          <p class="service-price-tag">Free<span class="service-price-note"></span></p>
+          <p class="service-desc">Use our <strong>PC Canvas</strong> tool at no cost to check part compatibility, explore component options, and plan your custom PC build — all on your own, at your own pace.</p>
+          <ul class="service-features">
+            <li>PC Canvas compatibility checker</li>
+            <li>Full component catalog access</li>
+            <li>Budget planning tools</li>
+          </ul>
+        </div>
+
+        <!-- Standard -->
+        <div class="service-card service-standard">
+          <div class="service-badge service-badge-standard">POPULAR</div>
+          <div class="service-icon-wrap">🧑‍💻</div>
+          <p class="service-tier">Standard Service</p>
+          <p class="service-price-tag"> ₱500<span class="service-price-note">consultation fee</span></p>
+          <p class="service-desc">We guide you in choosing the right parts based on your budget and needs — comparing prices and recommending the best performance options. You handle the purchasing and assembly. Walk-in customers are welcome.</p>
+          <ul class="service-features">
+            <li> Compatible part recommendations</li>
+            <li>Sourcing from trusted suppliers</li>
+            <li>Customer handles purchase &amp; build</li>
+          </ul>
+        </div>
+
+        <!-- Premium -->
+        <div class="service-card service-premium">
+          <div class="service-badge service-badge-premium">FULL BUILD</div>
+          <div class="service-icon-wrap">🛠️</div>
+          <p class="service-tier">Premium Service</p>
+          <p class="service-price-tag">₱1,500<span class="service-price-note">service fee · parts separate</span></p>
+          <p class="service-desc">End-to-end custom PC building — we recommend compatible parts, source from trusted suppliers, assemble everything, run full system tests, and provide after-sales support. Walk-in customers are welcome.</p>
+          <ul class="service-features">
+            <li>Compatible part recommendations</li>
+            <li>Sourcing from trusted suppliers</li>
+            <li>Full assembly &amp; system testing</li>
+            <li>After-sales support included</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <!-- ═══ END SERVICES ═══ -->
+
+    <div style="margin-top:48px;">
+      <div class="contact-details">
+        <div class="contact-detail-item"><div class="detail-icon">📘</div><div class="detail-info"><strong>Facebook</strong>@siliconworks</div></div>
+        <div class="contact-detail-item"><div class="detail-icon">📷</div><div class="detail-info"><strong>Instagram</strong>@siliconworks</div></div>
+        <div class="contact-detail-item"><div class="detail-icon">🐦</div><div class="detail-info"><strong>Twitter / X</strong>@siliconworks</div></div>
+        <div class="contact-detail-item"><div class="detail-icon">📧</div><div class="detail-info"><strong>Email</strong>Siliconworkscarmona@gmail.com</div></div>
+        <div class="contact-detail-item"><div class="detail-icon">📍</div><div class="detail-info"><strong>Address</strong>Brgy. Maduya, Carmona, Cavite</div></div>
+        <div class="contact-detail-item"><div class="detail-icon">🚀</div><div class="detail-info"><strong>Shipping</strong>J&T / Ninja Van — all provinces, COD available</div></div>
+      </div>
+    </div>
+
+    <div class="about-banner">
+      <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin-bottom:8px;">Budget Tip</p>
+      <p style="font-size:13px;line-height:1.75;color:rgba(255,255,255,0.80);">Budget to performance per peso. We don't cut corners — your silicon works, always.</p>
+      <p style="margin-top:12px;font-size:12px;color:rgba(255,255,255,0.55);">🏷️ Filipino business, building PCs for Filipino gamers. Fast shipping and full support.</p>
+    </div>
+  </div>
+  <footer>
+    <span class="fw">SW SILICON WORKS</span>
+    <span>© 2025 SiliconWorks Philippines. All rights reserved.</span>
+    <span><a href="mailto:Siliconworkscarmona@gmail.com">Siliconworkscarmona@gmail.com</a></span>
+  </footer>
+</section>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payment-modal">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 class="modal-title" id="modal-title">Place Your Order</h3>
+    <p class="modal-sub" id="modal-sub">Complete the form below to confirm your order.</p>
+    <div class="modal-price-bar">
+      <span class="modal-price-label" id="modal-build-label">Build Package</span>
+      <span class="modal-price-val" id="modal-price-display">₱0</span>
+    </div>
+    <div class="payment-tabs" id="modal-pay-tabs">
+      <button class="pay-tab active" data-method="gcash">GCash</button>
+      <button class="pay-tab" data-method="maya">PayMaya</button>
+      <button class="pay-tab" data-method="bank">Bank Transfer</button>
+      <button class="pay-tab" data-method="cod">COD</button>
+    </div>
+    <div class="pay-form active" id="pay-gcash">
+      <div class="pay-info-box"><strong>Send Payment to:</strong>GCash Number: 0917-XXX-XXXX<br>Account Name: Silicon Works Philippines<br><br>After sending, fill out the form below. Your order will be confirmed within 30 minutes.</div>
+      <div class="pay-form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Juan"></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="dela Cruz"></div></div>
+      <div class="form-group"><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="juan@example.com"></div>
+      <div class="form-group"><label>GCash Reference Number</label><input type="text" placeholder="e.g. 1234567890"></div>
+      <button class="confirm-btn" onclick="confirmOrder('GCash')">✅ Confirm GCash Order</button>
+    </div>
+    <div class="pay-form" id="pay-maya">
+      <div class="pay-info-box"><strong>Send Payment to:</strong>PayMaya Number: 0917-XXX-XXXX<br>Account Name: Silicon Works Philippines<br><br>After sending, fill out the form below. Your order will be confirmed within 30 minutes.</div>
+      <div class="pay-form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Juan"></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="dela Cruz"></div></div>
+      <div class="form-group"><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="juan@example.com"></div>
+      <div class="form-group"><label>PayMaya Reference Number</label><input type="text" placeholder="e.g. 1234567890"></div>
+      <button class="confirm-btn" onclick="confirmOrder('PayMaya')">✅ Confirm PayMaya Order</button>
+    </div>
+    <div class="pay-form" id="pay-bank">
+      <div class="pay-info-box"><strong>Account Name: Silicon Works Philippines</strong>Choose your bank below and transfer the exact amount.</div>
+      <div class="bank-row">
+        <div class="bank-option sel" onclick="selectBank(this,'BDO')">BDO<br><small style="font-size:10px;color:var(--sw-muted);">0280-7654-3210</small></div>
+        <div class="bank-option" onclick="selectBank(this,'BPI')">BPI<br><small style="font-size:10px;color:var(--sw-muted);">0234-7604-230</small></div>
+        <div class="bank-option" onclick="selectBank(this,'GCash Bank')">GCash<br><small style="font-size:10px;color:var(--sw-muted);">0234 6876 10</small></div>
+      </div>
+      <div class="pay-form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Juan"></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="dela Cruz"></div></div>
+      <div class="form-group"><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="juan@example.com"></div>
+      <div class="form-group"><label>Bank Used</label><input type="text" id="bank-selected" value="BDO" readonly></div>
+      <div class="form-group"><label>Transfer Reference Number</label><input type="text" placeholder="Transaction reference number"></div>
+      <button class="confirm-btn" onclick="confirmOrder('Bank Transfer')">✅ Confirm Bank Transfer</button>
+    </div>
+    <div class="pay-form" id="pay-cod">
+      <div class="cod-note"><p><strong>Coverage Area: Carmona, Cavite</strong><br>Free delivery within Carmona. Areas outside may have additional delivery fees via J&T or Ninja Van.</p></div>
+      <div style="background:var(--sw-bg2);border-radius:8px;padding:11px;margin-bottom:12px;border:1px solid var(--sw-card);"><p style="font-size:12px;color:var(--sw-muted);"><strong style="color:var(--sw-text);">Nationwide Shipping via Ninja Van / J&T</strong><br>COD available in all provinces. Shipping fee applies outside Carmona.</p></div>
+      <div class="cod-warn"><p><strong>Important:</strong> Prepare the exact amount before your courier arrives. Our team will confirm the exact purchase total.</p></div>
+      <div class="pay-form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Juan"></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="dela Cruz"></div></div>
+      <div class="form-group"><label>Contact Number</label><input type="tel" placeholder="+63 9XX XXX XXXX"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="juan@example.com"></div>
+      <div class="form-group"><label>Complete Delivery Address</label><input type="text" placeholder="House/Unit No., Street, Barangay, City, Province"></div>
+      <div class="form-group"><label>Nearest Landmark (optional)</label><input type="text" placeholder="e.g. Near SM Dasmariñas"></div>
+      <button class="confirm-btn" onclick="confirmOrder('Cash on Delivery')">📦 Place COD Order</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- CART SIDEBAR -->
+<div id="cart-sidebar">
+  <div class="cart-sidebar-head">
+    <span class="cart-sidebar-title">Your Cart</span>
+    <button class="cart-close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div id="cart-items"><p style="color:var(--sw-muted);font-size:13px;text-align:center;padding:40px 0;">No items yet.<br>Add parts from the Components page.</p></div>
+  <div id="cart-footer" style="display:none;">
+    <div class="cart-total-row"><span style="font-weight:600;font-size:14px;">Total</span><span id="cart-total">₱0</span></div>
+    <button class="order-btn" style="width:100%;" onclick="toggleCart();openModal('cart')">Checkout</button>
+    <button class="cart-clear-btn" onclick="clearCart()">Clear Cart</button>
+  </div>
+</div>
+<div id="cart-overlay" onclick="toggleCart()"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
